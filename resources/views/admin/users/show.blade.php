@@ -41,10 +41,10 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.user.fields.email_verified_at') }}
+                            {{ trans('cruds.user.fields.phone_number') }}
                         </th>
                         <td>
-                            {{ $user->email_verified_at }}
+                            {{ $user->phone_number }}
                         </td>
                     </tr>
                     <tr>
@@ -55,6 +55,14 @@
                             @foreach($user->roles as $key => $roles)
                                 <span class="label label-info">{{ $roles->title }}</span>
                             @endforeach
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.user.fields.email_verified_at') }}
+                        </th>
+                        <td>
+                            {{ $user->email_verified_at }}
                         </td>
                     </tr>
                 </tbody>
@@ -74,12 +82,20 @@
     </div>
     <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
         <li class="nav-item">
+            <a class="nav-link" href="#user_request_services" role="tab" data-toggle="tab">
+                {{ trans('cruds.requestService.title') }}
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="#user_user_alerts" role="tab" data-toggle="tab">
                 {{ trans('cruds.userAlert.title') }}
             </a>
         </li>
     </ul>
     <div class="tab-content">
+        <div class="tab-pane" role="tabpanel" id="user_request_services">
+            @includeIf('admin.users.relationships.userRequestServices', ['requestServices' => $user->userRequestServices])
+        </div>
         <div class="tab-pane" role="tabpanel" id="user_user_alerts">
             @includeIf('admin.users.relationships.userUserAlerts', ['userAlerts' => $user->userUserAlerts])
         </div>
