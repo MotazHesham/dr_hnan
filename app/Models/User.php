@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Notifications\VerifyUserNotification;
+use App\Traits\Auditable;
 use Carbon\Carbon;
 use DateTimeInterface;
 use Hash;
@@ -16,13 +17,18 @@ use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
-    use SoftDeletes, Notifiable, HasFactory;
+    use SoftDeletes, Notifiable, Auditable, HasFactory;
 
     public $table = 'users';
 
     protected $hidden = [
         'remember_token',
         'password',
+    ];
+
+    public const USER_TYPE_SELECT = [
+        'staff'  => 'staff',
+        'client' => 'client',
     ];
 
     protected $dates = [
@@ -35,9 +41,11 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'email_verified_at',
+        'phone_number',
         'password',
+        'email_verified_at',
         'remember_token',
+        'user_type',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -74,16 +82,6 @@ class User extends Authenticatable
         return $this->belongsToMany(UserAlert::class);
     }
 
-    public function getEmailVerifiedAtAttribute($value)
-    {
-        return $value ? Carbon::createFromFormat('Y-m-d H:i:s', $value)->format(config('panel.date_format') . ' ' . config('panel.time_format')) : null;
-    }
-
-    public function setEmailVerifiedAtAttribute($value)
-    {
-        $this->attributes['email_verified_at'] = $value ? Carbon::createFromFormat(config('panel.date_format') . ' ' . config('panel.time_format'), $value)->format('Y-m-d H:i:s') : null;
-    }
-
     public function setPasswordAttribute($input)
     {
         if ($input) {
@@ -99,5 +97,15 @@ class User extends Authenticatable
     public function roles()
     {
         return $this->belongsToMany(Role::class);
+    }
+
+    public function getEmailVerifiedAtAttribute($value)
+    {
+        return $value ? Carbon::createFromFormat('Y-m-d H:i:s', $value)->format(config('panel.date_format') . ' ' . config('panel.time_format')) : null;
+    }
+
+    public function setEmailVerifiedAtAttribute($value)
+    {
+        $this->attributes['email_verified_at'] = $value ? Carbon::createFromFormat(config('panel.date_format') . ' ' . config('panel.time_format'), $value)->format('Y-m-d H:i:s') : null;
     }
 }
