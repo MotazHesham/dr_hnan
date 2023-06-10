@@ -18,7 +18,7 @@ class UsersController extends Controller
     {
         abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $users = User::with(['roles'])->get();
+        $users = User::where('user_type','staff')->with(['roles'])->get();
 
         return view('admin.users.index', compact('users'));
     }
@@ -72,7 +72,11 @@ class UsersController extends Controller
     {
         abort_if(Gate::denies('user_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $user->delete();
+        if($user->id != 1){ 
+            $user->delete();
+        }else{
+            alert('Cant delete the admin','','warning');
+        }
 
         return back();
     }
@@ -82,7 +86,11 @@ class UsersController extends Controller
         $users = User::find(request('ids'));
 
         foreach ($users as $user) {
-            $user->delete();
+            if($user->id != 1){ 
+                $user->delete();
+            }else{
+                alert('Cant delete the admin','','warning');
+            }
         }
 
         return response(null, Response::HTTP_NO_CONTENT);

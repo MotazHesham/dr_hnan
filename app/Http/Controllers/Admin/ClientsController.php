@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyClientRequest;
 use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\UpdateClientRequest;
+use App\Models\User;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,8 +16,10 @@ class ClientsController extends Controller
     public function index()
     {
         abort_if(Gate::denies('client_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        
+        $users = User::where('user_type','client')->with(['roles'])->get();
 
-        return view('admin.clients.index');
+        return view('admin.clients.index', compact('users'));
     }
 
     public function create()
@@ -28,33 +31,33 @@ class ClientsController extends Controller
 
     public function store(StoreClientRequest $request)
     {
-        $client = Client::create($request->all());
+        User::create($request->all());
 
         return redirect()->route('admin.clients.index');
     }
 
-    public function edit(Client $client)
+    public function edit(User $client)
     {
         abort_if(Gate::denies('client_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.clients.edit', compact('client'));
     }
 
-    public function update(UpdateClientRequest $request, Client $client)
+    public function update(UpdateClientRequest $request, User $client)
     {
         $client->update($request->all());
 
         return redirect()->route('admin.clients.index');
     }
 
-    public function show(Client $client)
+    public function show(User $client)
     {
         abort_if(Gate::denies('client_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.clients.show', compact('client'));
     }
 
-    public function destroy(Client $client)
+    public function destroy(User $client)
     {
         abort_if(Gate::denies('client_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
@@ -65,7 +68,7 @@ class ClientsController extends Controller
 
     public function massDestroy(MassDestroyClientRequest $request)
     {
-        $clients = Client::find(request('ids'));
+        $clients = User::find(request('ids'));
 
         foreach ($clients as $client) {
             $client->delete();

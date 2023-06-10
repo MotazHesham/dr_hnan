@@ -25,9 +25,6 @@
                             {{ trans('cruds.requestService.fields.id') }}
                         </th>
                         <th>
-                            {{ trans('cruds.requestService.fields.user') }}
-                        </th>
-                        <th>
                             {{ trans('cruds.requestService.fields.service') }}
                         </th>
                         <th>
@@ -52,9 +49,6 @@
                             </td>
                             <td>
                                 {{ $requestService->id ?? '' }}
-                            </td>
-                            <td>
-                                {{ $requestService->user->name ?? '' }}
                             </td>
                             <td>
                                 {{ $requestService->service->name ?? '' }}

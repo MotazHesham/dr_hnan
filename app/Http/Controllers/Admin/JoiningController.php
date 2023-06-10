@@ -18,6 +18,13 @@ class JoiningController extends Controller
 {
     use MediaUploadingTrait;
 
+    public function update_is_sent_email(Request $request){
+        $joining = Joining::findOrFail($request->id);
+        $joining->is_sent_email = $request->status;
+        $joining->save(); 
+        return 1;
+    } 
+
     public function index(Request $request)
     {
         abort_if(Gate::denies('joining_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -70,9 +77,13 @@ class JoiningController extends Controller
             });
             $table->editColumn('cv', function ($row) {
                 return $row->cv ? '<a href="' . $row->cv->getUrl() . '" target="_blank">' . trans('global.downloadFile') . '</a>' : '';
-            });
+            }); 
             $table->editColumn('is_sent_email', function ($row) {
-                return '<input type="checkbox" disabled ' . ($row->is_sent_email ? 'checked' : null) . '>';
+                return '
+                <label class="c-switch c-switch-pill c-switch-success">
+                    <input onchange="update_is_sent_email(this)" value="' . $row->id . '" type="checkbox" class="c-switch-input" '. ($row->is_sent_email ? "checked" : null) .' }}>
+                    <span class="c-switch-slider"></span>
+                </label>';
             });
 
             $table->rawColumns(['actions', 'placeholder', 'cv', 'is_sent_email']);

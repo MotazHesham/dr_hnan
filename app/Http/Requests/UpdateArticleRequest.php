@@ -32,7 +32,7 @@ class UpdateArticleRequest extends FormRequest
             'file' => [
                 'required',
             ],
-            'acticve' => [
+            'active' => [
                 'required',
             ],
         ];

@@ -15,6 +15,7 @@ class CreateQuotationsTable extends Migration
             $table->string('position');
             $table->string('phone_number');
             $table->string('email');
+            $table->boolean('is_sent_email')->default(0)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

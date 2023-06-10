@@ -51,16 +51,16 @@
                 <span class="help-block">{{ trans('cruds.article.fields.file_helper') }}</span>
             </div>
             <div class="form-group">
-                <div class="form-check {{ $errors->has('acticve') ? 'is-invalid' : '' }}">
-                    <input class="form-check-input" type="checkbox" name="acticve" id="acticve" value="1" required {{ old('acticve', 0) == 1 ? 'checked' : '' }}>
-                    <label class="required form-check-label" for="acticve">{{ trans('cruds.article.fields.acticve') }}</label>
+                <div class="form-check {{ $errors->has('active') ? 'is-invalid' : '' }}">
+                    <input class="form-check-input" type="checkbox" name="active" id="active" value="1" required {{ old('active', 0) == 1 ? 'checked' : '' }}>
+                    <label class="required form-check-label" for="active">{{ trans('cruds.article.fields.active') }}</label>
                 </div>
-                @if($errors->has('acticve'))
+                @if($errors->has('active'))
                     <div class="invalid-feedback">
-                        {{ $errors->first('acticve') }}
+                        {{ $errors->first('active') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('cruds.article.fields.acticve_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.article.fields.active_helper') }}</span>
             </div>
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">

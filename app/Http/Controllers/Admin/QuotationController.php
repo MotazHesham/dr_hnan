@@ -15,6 +15,13 @@ use Yajra\DataTables\Facades\DataTables;
 
 class QuotationController extends Controller
 {
+    public function update_is_sent_email(Request $request){
+        $quotation = Quotation::findOrFail($request->id);
+        $quotation->is_sent_email = $request->status;
+        $quotation->save(); 
+        return 1;
+    } 
+
     public function index(Request $request)
     {
         abort_if(Gate::denies('quotation_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -62,8 +69,15 @@ class QuotationController extends Controller
             $table->addColumn('service_name', function ($row) {
                 return $row->service ? $row->service->name : '';
             });
+            $table->editColumn('is_sent_email', function ($row) {
+                return '
+                <label class="c-switch c-switch-pill c-switch-success">
+                    <input onchange="update_is_sent_email(this)" value="' . $row->id . '" type="checkbox" class="c-switch-input" '. ($row->is_sent_email ? "checked" : null) .' }}>
+                    <span class="c-switch-slider"></span>
+                </label>';
+            });
 
-            $table->rawColumns(['actions', 'placeholder', 'service']);
+            $table->rawColumns(['actions', 'placeholder', 'service','is_sent_email']);
 
             return $table->make(true);
         }

@@ -20,6 +20,14 @@ class RequestServiceController extends Controller
 {
     use MediaUploadingTrait;
 
+    public function update_status($id,$status){
+        $requestService = RequestService::findOrFail($id);
+        $requestService->status = $status;
+        $requestService->save();
+        alert('تم بنجاح');
+        return redirect()->route('admin.request-services.index');
+    }
+
     public function index(Request $request)
     {
         abort_if(Gate::denies('request_service_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -37,7 +45,7 @@ class RequestServiceController extends Controller
                 $deleteGate    = 'request_service_delete';
                 $crudRoutePart = 'request-services';
 
-                return view('partials.datatablesActions', compact(
+                return view('admin.requestServices.datatablesActions', compact(
                     'viewGate',
                     'editGate',
                     'deleteGate',
@@ -58,10 +66,28 @@ class RequestServiceController extends Controller
             });
 
             $table->editColumn('contract', function ($row) {
-                return $row->contract ? '<a href="' . $row->contract->getUrl() . '" target="_blank">' . trans('global.downloadFile') . '</a>' : '';
+                if($row->contract){ 
+                    $contract = '<a href="' . $row->contract->getUrl() . '" target="_blank">' . trans('global.downloadFile') . '</a>';
+                }else{
+                    if($row->status == 'accept'){
+                        $contract = '<a class="btn btn-xs btn-info" href="'. route("admin.request-services.edit",$row->id) .'"> أرسال العقد </a>  ';
+                    }else{
+                        $contract = '';
+                    }
+                }
+                return $contract;
             });
             $table->editColumn('contract_accept', function ($row) {
-                return '<input type="checkbox" disabled ' . ($row->contract_accept ? 'checked' : null) . '>';
+                if($row->status != 'accept'){
+                    $status = '';
+                }elseif($row->contract_accept){
+                    $status = '<i class="far fa-check-circle " style="font-size:20px;color:green"></i>';
+                }elseif($row->contract){ 
+                    $status = 'في أنتظار الموافقة';
+                }else{ 
+                    $status = '';
+                }
+                return  $status;
             });
             $table->editColumn('status', function ($row) {
                 return $row->status ? RequestService::STATUS_SELECT[$row->status] : '';
@@ -102,24 +128,19 @@ class RequestServiceController extends Controller
     }
 
     public function edit(RequestService $requestService)
-    {
-        abort_if(Gate::denies('request_service_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $services = Service::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+    { 
 
         $requestService->load('user', 'service');
 
-        return view('admin.requestServices.edit', compact('requestService', 'services', 'users'));
+        return view('admin.requestServices.edit', compact('requestService'));
     }
 
-    public function update(UpdateRequestServiceRequest $request, RequestService $requestService)
+    public function update(Request $request, RequestService $requestService)
     {
         $requestService->update($request->all());
 
         if ($request->input('contract', false)) {
-            if (! $requestService->contract || $request->input('contract') !== $requestService->contract->file_name) {
+            if (!$requestService->contract || $request->input('contract') !== $requestService->contract->file_name) {
                 if ($requestService->contract) {
                     $requestService->contract->delete();
                 }
@@ -129,6 +150,7 @@ class RequestServiceController extends Controller
             $requestService->contract->delete();
         }
 
+        alert('تم بنجاح','تم أرسال العقد للعميل بنجاح وفي أنتظار قبول الشروط والأحكام','success');
         return redirect()->route('admin.request-services.index');
     }
 

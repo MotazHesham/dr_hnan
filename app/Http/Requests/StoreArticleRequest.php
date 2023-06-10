@@ -32,7 +32,7 @@ class StoreArticleRequest extends FormRequest
             'file' => [
                 'required',
             ],
-            'acticve' => [
+            'active' => [
                 'required',
             ],
         ];

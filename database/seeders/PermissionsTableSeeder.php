@@ -8,354 +8,355 @@ use Illuminate\Database\Seeder;
 class PermissionsTableSeeder extends Seeder
 {
     public function run()
-    {
+    {   
+        $i = 1;
         $permissions = [
             [
-                'id'    => 1,
+                'id'    => $i++,
                 'title' => 'user_management_access',
             ],
+            // [
+            // 'id'    => $i++,
+            //     'title' => 'permission_create',
+            // ],
+            // [
+            // 'id'    => $i++,
+            //     'title' => 'permission_edit',
+            // ],
+            // [
+            // 'id'    => $i++,
+            //     'title' => 'permission_show',
+            // ],
+            // [
+            // 'id'    => $i++,
+            //     'title' => 'permission_delete',
+            // ],
+            // [
+            // 'id'    => $i++,
+            //     'title' => 'permission_access',
+            // ],
             [
-                'id'    => 2,
-                'title' => 'permission_create',
-            ],
-            [
-                'id'    => 3,
-                'title' => 'permission_edit',
-            ],
-            [
-                'id'    => 4,
-                'title' => 'permission_show',
-            ],
-            [
-                'id'    => 5,
-                'title' => 'permission_delete',
-            ],
-            [
-                'id'    => 6,
-                'title' => 'permission_access',
-            ],
-            [
-                'id'    => 7,
+                'id'    => $i++,
                 'title' => 'role_create',
             ],
             [
-                'id'    => 8,
+                'id'    => $i++,
                 'title' => 'role_edit',
             ],
             [
-                'id'    => 9,
+                'id'    => $i++,
                 'title' => 'role_show',
             ],
             [
-                'id'    => 10,
+                'id'    => $i++,
                 'title' => 'role_delete',
             ],
             [
-                'id'    => 11,
+                'id'    => $i++,
                 'title' => 'role_access',
             ],
             [
-                'id'    => 12,
+                'id'    => $i++,
                 'title' => 'user_create',
             ],
             [
-                'id'    => 13,
+                'id'    => $i++,
                 'title' => 'user_edit',
             ],
             [
-                'id'    => 14,
+                'id'    => $i++,
                 'title' => 'user_show',
             ],
             [
-                'id'    => 15,
+                'id'    => $i++,
                 'title' => 'user_delete',
             ],
             [
-                'id'    => 16,
+                'id'    => $i++,
                 'title' => 'user_access',
             ],
             [
-                'id'    => 17,
+                'id'    => $i++,
                 'title' => 'consultant_create',
             ],
             [
-                'id'    => 18,
+                'id'    => $i++,
                 'title' => 'consultant_edit',
             ],
             [
-                'id'    => 19,
+                'id'    => $i++,
                 'title' => 'consultant_show',
             ],
             [
-                'id'    => 20,
+                'id'    => $i++,
                 'title' => 'consultant_delete',
             ],
             [
-                'id'    => 21,
+                'id'    => $i++,
                 'title' => 'consultant_access',
             ],
             [
-                'id'    => 22,
+                'id'    => $i++,
                 'title' => 'audit_log_show',
             ],
             [
-                'id'    => 23,
+                'id'    => $i++,
                 'title' => 'audit_log_access',
             ],
             [
-                'id'    => 24,
+                'id'    => $i++,
                 'title' => 'user_alert_create',
             ],
             [
-                'id'    => 25,
+                'id'    => $i++,
                 'title' => 'user_alert_show',
             ],
             [
-                'id'    => 26,
+                'id'    => $i++,
                 'title' => 'user_alert_delete',
             ],
             [
-                'id'    => 27,
+                'id'    => $i++,
                 'title' => 'user_alert_access',
             ],
             [
-                'id'    => 28,
+                'id'    => $i++,
                 'title' => 'course_create',
             ],
             [
-                'id'    => 29,
+                'id'    => $i++,
                 'title' => 'course_edit',
             ],
             [
-                'id'    => 30,
+                'id'    => $i++,
                 'title' => 'course_show',
             ],
             [
-                'id'    => 31,
+                'id'    => $i++,
                 'title' => 'course_delete',
             ],
             [
-                'id'    => 32,
+                'id'    => $i++,
                 'title' => 'course_access',
             ],
             [
-                'id'    => 33,
+                'id'    => $i++,
                 'title' => 'news_create',
             ],
             [
-                'id'    => 34,
+                'id'    => $i++,
                 'title' => 'news_edit',
             ],
             [
-                'id'    => 35,
+                'id'    => $i++,
                 'title' => 'news_show',
             ],
             [
-                'id'    => 36,
+                'id'    => $i++,
                 'title' => 'news_delete',
             ],
             [
-                'id'    => 37,
+                'id'    => $i++,
                 'title' => 'news_access',
             ],
+            // [
+            // 'id'    => $i++,
+            //     'title' => 'joining_create',
+            // ],
+            // [
+            // 'id'    => $i++,
+            //     'title' => 'joining_edit',
+            // ],
             [
-                'id'    => 38,
-                'title' => 'joining_create',
-            ],
-            [
-                'id'    => 39,
-                'title' => 'joining_edit',
-            ],
-            [
-                'id'    => 40,
+                'id'    => $i++,
                 'title' => 'joining_show',
             ],
             [
-                'id'    => 41,
+                'id'    => $i++,
                 'title' => 'joining_delete',
             ],
             [
-                'id'    => 42,
+                'id'    => $i++,
                 'title' => 'joining_access',
             ],
+            // [
+            // 'id'    => $i++,
+            //     'title' => 'contact_create',
+            // ],
+            // [
+            // 'id'    => $i++,
+            //     'title' => 'contact_edit',
+            // ],
             [
-                'id'    => 43,
-                'title' => 'contact_create',
-            ],
-            [
-                'id'    => 44,
-                'title' => 'contact_edit',
-            ],
-            [
-                'id'    => 45,
+                'id'    => $i++,
                 'title' => 'contact_show',
             ],
             [
-                'id'    => 46,
+                'id'    => $i++,
                 'title' => 'contact_delete',
             ],
             [
-                'id'    => 47,
+                'id'    => $i++,
                 'title' => 'contact_access',
             ],
+            // [
+            // 'id'    => $i++,
+            //     'title' => 'quotation_create',
+            // ],
+            // [
+            // 'id'    => $i++,
+            //     'title' => 'quotation_edit',
+            // ],
             [
-                'id'    => 48,
-                'title' => 'quotation_create',
-            ],
-            [
-                'id'    => 49,
-                'title' => 'quotation_edit',
-            ],
-            [
-                'id'    => 50,
+                'id'    => $i++,
                 'title' => 'quotation_show',
             ],
             [
-                'id'    => 51,
+                'id'    => $i++,
                 'title' => 'quotation_delete',
             ],
             [
-                'id'    => 52,
+                'id'    => $i++,
                 'title' => 'quotation_access',
             ],
             [
-                'id'    => 53,
+                'id'    => $i++,
                 'title' => 'knowledge_center_access',
             ],
             [
-                'id'    => 54,
+                'id'    => $i++,
                 'title' => 'article_create',
             ],
             [
-                'id'    => 55,
+                'id'    => $i++,
                 'title' => 'article_edit',
             ],
             [
-                'id'    => 56,
+                'id'    => $i++,
                 'title' => 'article_show',
             ],
             [
-                'id'    => 57,
+                'id'    => $i++,
                 'title' => 'article_delete',
             ],
             [
-                'id'    => 58,
+                'id'    => $i++,
                 'title' => 'article_access',
             ],
             [
-                'id'    => 59,
+                'id'    => $i++,
                 'title' => 'book_create',
             ],
             [
-                'id'    => 60,
+                'id'    => $i++,
                 'title' => 'book_edit',
             ],
             [
-                'id'    => 61,
+                'id'    => $i++,
                 'title' => 'book_show',
             ],
             [
-                'id'    => 62,
+                'id'    => $i++,
                 'title' => 'book_delete',
             ],
             [
-                'id'    => 63,
+                'id'    => $i++,
                 'title' => 'book_access',
             ],
             [
-                'id'    => 64,
+                'id'    => $i++,
                 'title' => 'sample_create',
             ],
             [
-                'id'    => 65,
+                'id'    => $i++,
                 'title' => 'sample_edit',
             ],
             [
-                'id'    => 66,
+                'id'    => $i++,
                 'title' => 'sample_show',
             ],
             [
-                'id'    => 67,
+                'id'    => $i++,
                 'title' => 'sample_delete',
             ],
             [
-                'id'    => 68,
+                'id'    => $i++,
                 'title' => 'sample_access',
             ],
             [
-                'id'    => 69,
+                'id'    => $i++,
                 'title' => 'service_create',
             ],
             [
-                'id'    => 70,
+                'id'    => $i++,
                 'title' => 'service_edit',
             ],
             [
-                'id'    => 71,
+                'id'    => $i++,
                 'title' => 'service_show',
             ],
             [
-                'id'    => 72,
+                'id'    => $i++,
                 'title' => 'service_delete',
             ],
             [
-                'id'    => 73,
+                'id'    => $i++,
                 'title' => 'service_access',
             ],
+            // [
+            // 'id'    => $i++,
+            //     'title' => 'request_service_create',
+            // ],
+            // [
+            // 'id'    => $i++,
+            //     'title' => 'request_service_edit',
+            // ],
             [
-                'id'    => 74,
-                'title' => 'request_service_create',
-            ],
-            [
-                'id'    => 75,
-                'title' => 'request_service_edit',
-            ],
-            [
-                'id'    => 76,
+                'id'    => $i++,
                 'title' => 'request_service_show',
             ],
             [
-                'id'    => 77,
+                'id'    => $i++,
                 'title' => 'request_service_delete',
             ],
             [
-                'id'    => 78,
+                'id'    => $i++,
                 'title' => 'request_service_access',
             ],
             [
-                'id'    => 79,
+                'id'    => $i++,
                 'title' => 'client_create',
             ],
             [
-                'id'    => 80,
+                'id'    => $i++,
                 'title' => 'client_edit',
             ],
             [
-                'id'    => 81,
+                'id'    => $i++,
                 'title' => 'client_show',
             ],
             [
-                'id'    => 82,
+                'id'    => $i++,
                 'title' => 'client_delete',
             ],
             [
-                'id'    => 83,
+                'id'    => $i++,
                 'title' => 'client_access',
             ],
             [
-                'id'    => 84,
+                'id'    => $i++,
                 'title' => 'clients_list_access',
             ],
             [
-                'id'    => 85,
+                'id'    => $i++,
                 'title' => 'about_us_edit',
             ],
             [
-                'id'    => 86,
+                'id'    => $i++,
                 'title' => 'about_us_access',
             ],
             [
-                'id'    => 87,
+                'id'    => $i++,
                 'title' => 'profile_password_edit',
             ],
         ];

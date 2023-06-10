@@ -33,6 +33,7 @@ class Quotation extends Model
         'phone_number',
         'email',
         'service_id',
+        'is_sent_email',
         'created_at',
         'updated_at',
         'deleted_at',

@@ -33,7 +33,7 @@ class Article extends Model implements HasMedia
         'title',
         'writer',
         'date',
-        'acticve',
+        'active',
         'created_at',
         'updated_at',
         'deleted_at',

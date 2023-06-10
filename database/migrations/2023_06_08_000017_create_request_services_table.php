@@ -11,7 +11,7 @@ class CreateRequestServicesTable extends Migration
         Schema::create('request_services', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->boolean('contract_accept')->default(0)->nullable();
-            $table->string('status')->nullable();
+            $table->string('status')->default('pending');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'site_title' => 'Dr_Hnan',
+    'site_title' => 'HDAC',
 
 ];

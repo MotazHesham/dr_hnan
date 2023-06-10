@@ -80,22 +80,14 @@
     <div class="card-header">
         {{ trans('global.relatedData') }}
     </div>
-    <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
-        <li class="nav-item">
-            <a class="nav-link" href="#user_request_services" role="tab" data-toggle="tab">
-                {{ trans('cruds.requestService.title') }}
-            </a>
-        </li>
+    <ul class="nav nav-tabs" role="tablist" id="relationship-tabs"> 
         <li class="nav-item">
             <a class="nav-link" href="#user_user_alerts" role="tab" data-toggle="tab">
                 {{ trans('cruds.userAlert.title') }}
             </a>
         </li>
     </ul>
-    <div class="tab-content">
-        <div class="tab-pane" role="tabpanel" id="user_request_services">
-            @includeIf('admin.users.relationships.userRequestServices', ['requestServices' => $user->userRequestServices])
-        </div>
+    <div class="tab-content"> 
         <div class="tab-pane" role="tabpanel" id="user_user_alerts">
             @includeIf('admin.users.relationships.userUserAlerts', ['userAlerts' => $user->userUserAlerts])
         </div>

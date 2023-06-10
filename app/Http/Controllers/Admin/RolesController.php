@@ -53,6 +53,9 @@ class RolesController extends Controller
 
     public function update(UpdateRoleRequest $request, Role $role)
     {
+        if($role->id == 1){  
+            alert('Cant Update the admin Role','','warning');
+        }
         $role->update($request->all());
         $role->permissions()->sync($request->input('permissions', []));
 
@@ -72,7 +75,11 @@ class RolesController extends Controller
     {
         abort_if(Gate::denies('role_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $role->delete();
+        if($role->id != 1){ 
+            $role->delete();
+        }else{
+            alert('Cant delete the admin Role','','warning');
+        }
 
         return back();
     }
@@ -80,9 +87,13 @@ class RolesController extends Controller
     public function massDestroy(MassDestroyRoleRequest $request)
     {
         $roles = Role::find(request('ids'));
-
+        
         foreach ($roles as $role) {
-            $role->delete();
+            if($role->id != 1){ 
+                $role->delete();
+            }else{
+                alert('Cant delete the admin Role','','warning');
+            } 
         }
 
         return response(null, Response::HTTP_NO_CONTENT);

@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 Route::redirect('/', '/login');
 Route::get('/home', function () {
     if (session('status')) {
@@ -11,7 +14,7 @@ Route::get('/home', function () {
 
 Auth::routes();
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth','staff']], function () {
     Route::get('/', 'HomeController@index')->name('home');
     // Permissions
     Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');
@@ -41,6 +44,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Courses
     Route::delete('courses/destroy', 'CoursesController@massDestroy')->name('courses.massDestroy');
+    Route::post('courses/media', 'CoursesController@storeMedia')->name('courses.storeMedia');
+    Route::post('courses/ckmedia', 'CoursesController@storeCKEditorImages')->name('courses.storeCKEditorImages');
     Route::resource('courses', 'CoursesController');
 
     // News
@@ -50,6 +55,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('newss', 'NewsController');
 
     // Joining
+    Route::post('joinings/update_is_sent_email', 'JoiningController@update_is_sent_email')->name('joinings.update_is_sent_email');
     Route::delete('joinings/destroy', 'JoiningController@massDestroy')->name('joinings.massDestroy');
     Route::post('joinings/media', 'JoiningController@storeMedia')->name('joinings.storeMedia');
     Route::post('joinings/ckmedia', 'JoiningController@storeCKEditorImages')->name('joinings.storeCKEditorImages');
@@ -60,6 +66,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('contacts', 'ContactController');
 
     // Quotation
+    Route::post('quotations/update_is_sent_email', 'QuotationController@update_is_sent_email')->name('quotations.update_is_sent_email');
     Route::delete('quotations/destroy', 'QuotationController@massDestroy')->name('quotations.massDestroy');
     Route::resource('quotations', 'QuotationController');
 
@@ -86,6 +93,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('services', 'ServicesController');
 
     // Request Service
+    Route::get('request-services/update_status/{id}/{status}', 'RequestServiceController@update_status')->name('request-services.update_status');
     Route::delete('request-services/destroy', 'RequestServiceController@massDestroy')->name('request-services.massDestroy');
     Route::post('request-services/media', 'RequestServiceController@storeMedia')->name('request-services.storeMedia');
     Route::post('request-services/ckmedia', 'RequestServiceController@storeCKEditorImages')->name('request-services.storeCKEditorImages');

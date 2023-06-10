@@ -36,8 +36,8 @@
                             </td>
                             <td>
                                 @if($aboutUs->logo)
-                                    <a href="{{ $aboutUs->logo->getUrl() }}" target="_blank">
-                                        {{ trans('global.view_file') }}
+                                    <a href="{{ $aboutUs->logo->getUrl() }}" target="_blank" style="display: inline-block">
+                                        <img src="{{ $aboutUs->logo->getUrl('thumb') }}">
                                     </a>
                                 @endif
                             </td>

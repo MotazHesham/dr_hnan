@@ -61,10 +61,10 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.article.fields.acticve') }}
+                            {{ trans('cruds.article.fields.active') }}
                         </th>
                         <td>
-                            <input type="checkbox" disabled="disabled" {{ $article->acticve ? 'checked' : '' }}>
+                            <input type="checkbox" disabled="disabled" {{ $article->active ? 'checked' : '' }}>
                         </td>
                     </tr>
                 </tbody>

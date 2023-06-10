@@ -37,7 +37,7 @@
                         {{ trans('cruds.article.fields.file') }}
                     </th>
                     <th>
-                        {{ trans('cruds.article.fields.acticve') }}
+                        {{ trans('cruds.article.fields.active') }}
                     </th>
                     <th>
                         &nbsp;
@@ -100,7 +100,7 @@
 { data: 'writer', name: 'writer' },
 { data: 'date', name: 'date' },
 { data: 'file', name: 'file', sortable: false, searchable: false },
-{ data: 'acticve', name: 'acticve' },
+{ data: 'active', name: 'active' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,

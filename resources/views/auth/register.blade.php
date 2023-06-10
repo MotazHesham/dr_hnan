@@ -26,6 +26,19 @@
                             </div>
                         @endif
                     </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-phone fa-fw"></i>
+                            </span>
+                        </div>
+                        <input type="text" name="phone_number" class="form-control{{ $errors->has('phone_number') ? ' is-invalid' : '' }}" required autofocus placeholder="{{ trans('cruds.user.fields.phone_number') }}" value="{{ old('phone_number', null) }}">
+                        @if($errors->has('phone_number'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('phone_number') }}
+                            </div>
+                        @endif
+                    </div>
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
@@ -64,6 +77,25 @@
                         <input type="password" name="password_confirmation" class="form-control" required placeholder="{{ trans('global.login_password_confirmation') }}">
                     </div>
 
+                    <div class="input-group mb-4"> 
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-server fa-fw"></i>
+                            </span>
+                        </div>             
+                        <div style="width: 90%">           
+                            <select class="form-control select2 {{ $errors->has('service') ? 'is-invalid' : '' }}" name="service_id" id="service_id" required>
+                                @foreach(\App\Models\Service::pluck('name', 'id')->prepend('اختر الخدمة', '') as $id => $entry)
+                                    <option value="{{ $id }}" {{ old('service_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                                @endforeach
+                            </select>
+                        </div>                        
+                        @if($errors->has('service'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('service') }}
+                            </div>
+                        @endif 
+                    </div>
                     <button class="btn btn-block btn-primary">
                         {{ trans('global.register') }}
                     </button>

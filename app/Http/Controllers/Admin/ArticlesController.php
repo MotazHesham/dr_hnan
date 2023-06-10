@@ -57,11 +57,11 @@ class ArticlesController extends Controller
             $table->editColumn('file', function ($row) {
                 return $row->file ? '<a href="' . $row->file->getUrl() . '" target="_blank">' . trans('global.downloadFile') . '</a>' : '';
             });
-            $table->editColumn('acticve', function ($row) {
-                return '<input type="checkbox" disabled ' . ($row->acticve ? 'checked' : null) . '>';
+            $table->editColumn('active', function ($row) {
+                return '<input type="checkbox" disabled ' . ($row->active ? 'checked' : null) . '>';
             });
 
-            $table->rawColumns(['actions', 'placeholder', 'file', 'acticve']);
+            $table->rawColumns(['actions', 'placeholder', 'file', 'active']);
 
             return $table->make(true);
         }
@@ -77,7 +77,7 @@ class ArticlesController extends Controller
     }
 
     public function store(StoreArticleRequest $request)
-    {
+    { 
         $article = Article::create($request->all());
 
         if ($request->input('file', false)) {

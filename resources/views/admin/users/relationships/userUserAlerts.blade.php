@@ -31,9 +31,6 @@
                             {{ trans('cruds.userAlert.fields.alert_link') }}
                         </th>
                         <th>
-                            {{ trans('cruds.userAlert.fields.user') }}
-                        </th>
-                        <th>
                             {{ trans('cruds.userAlert.fields.created_at') }}
                         </th>
                         <th>
@@ -55,11 +52,6 @@
                             </td>
                             <td>
                                 {{ $userAlert->alert_link ?? '' }}
-                            </td>
-                            <td>
-                                @foreach($userAlert->users as $key => $item)
-                                    <span class="badge badge-info">{{ $item->name }}</span>
-                                @endforeach
                             </td>
                             <td>
                                 {{ $userAlert->created_at ?? '' }}

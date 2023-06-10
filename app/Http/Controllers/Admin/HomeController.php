@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 
 class HomeController
 {
     public function index()
-    {
+    { 
+
         $settings1 = [
             'chart_title'           => 'طلبات الأنضمام',
             'chart_type'            => 'number_block',

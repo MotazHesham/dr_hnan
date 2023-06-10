@@ -13,7 +13,7 @@ class CreateArticlesTable extends Migration
             $table->string('title');
             $table->string('writer');
             $table->date('date');
-            $table->boolean('acticve')->default(0);
+            $table->boolean('active')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

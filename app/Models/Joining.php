@@ -33,7 +33,7 @@ class Joining extends Model implements HasMedia
     ];
 
     public const NATIONALITY_SELECT = [
-        'sauid'     => 'سعودي',
+        'saudi'     => 'سعودي',
         'non_saudi' => 'غير سعودي',
     ];
 

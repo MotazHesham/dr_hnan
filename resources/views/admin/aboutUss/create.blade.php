@@ -122,6 +122,16 @@
                 <span class="help-block">{{ trans('cruds.aboutUs.fields.address_helper') }}</span>
             </div>
             <div class="form-group">
+                <label for="twitter">{{ trans('cruds.aboutUs.fields.twitter') }}</label>
+                <input class="form-control {{ $errors->has('twitter') ? 'is-invalid' : '' }}" type="text" name="twitter" id="twitter" value="{{ old('twitter', '') }}">
+                @if($errors->has('twitter'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('twitter') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.aboutUs.fields.twitter_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <label for="facebook">{{ trans('cruds.aboutUs.fields.facebook') }}</label>
                 <input class="form-control {{ $errors->has('facebook') ? 'is-invalid' : '' }}" type="text" name="facebook" id="facebook" value="{{ old('facebook', '') }}">
                 @if($errors->has('facebook'))

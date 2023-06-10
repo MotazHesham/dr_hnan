@@ -19,42 +19,40 @@ class AboutUsController extends Controller
     {
         abort_if(Gate::denies('about_us_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $aboutUss = AboutUs::with(['media'])->get();
-
+        $aboutUss = AboutUs::with(['media'])->get(); 
         return view('admin.aboutUss.index', compact('aboutUss'));
     }
 
-    public function edit(AboutUs $aboutUs)
+    public function edit(AboutUs $aboutUss)
     {
-        abort_if(Gate::denies('about_us_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        return view('admin.aboutUss.edit', compact('aboutUs'));
+        abort_if(Gate::denies('about_us_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden'); 
+        return view('admin.aboutUss.edit', compact('aboutUss'));
     }
 
-    public function update(UpdateAboutUsRequest $request, AboutUs $aboutUs)
+    public function update(UpdateAboutUsRequest $request, AboutUs $aboutUss)
     {
-        $aboutUs->update($request->all());
+        $aboutUss->update($request->all());
 
         if ($request->input('logo', false)) {
-            if (! $aboutUs->logo || $request->input('logo') !== $aboutUs->logo->file_name) {
-                if ($aboutUs->logo) {
-                    $aboutUs->logo->delete();
+            if (! $aboutUss->logo || $request->input('logo') !== $aboutUss->logo->file_name) {
+                if ($aboutUss->logo) {
+                    $aboutUss->logo->delete();
                 }
-                $aboutUs->addMedia(storage_path('tmp/uploads/' . basename($request->input('logo'))))->toMediaCollection('logo');
+                $aboutUss->addMedia(storage_path('tmp/uploads/' . basename($request->input('logo'))))->toMediaCollection('logo');
             }
-        } elseif ($aboutUs->logo) {
-            $aboutUs->logo->delete();
+        } elseif ($aboutUss->logo) {
+            $aboutUss->logo->delete();
         }
 
         if ($request->input('cv', false)) {
-            if (! $aboutUs->cv || $request->input('cv') !== $aboutUs->cv->file_name) {
-                if ($aboutUs->cv) {
-                    $aboutUs->cv->delete();
+            if (! $aboutUss->cv || $request->input('cv') !== $aboutUss->cv->file_name) {
+                if ($aboutUss->cv) {
+                    $aboutUss->cv->delete();
                 }
-                $aboutUs->addMedia(storage_path('tmp/uploads/' . basename($request->input('cv'))))->toMediaCollection('cv');
+                $aboutUss->addMedia(storage_path('tmp/uploads/' . basename($request->input('cv'))))->toMediaCollection('cv');
             }
-        } elseif ($aboutUs->cv) {
-            $aboutUs->cv->delete();
+        } elseif ($aboutUss->cv) {
+            $aboutUss->cv->delete();
         }
 
         return redirect()->route('admin.about-uss.index');

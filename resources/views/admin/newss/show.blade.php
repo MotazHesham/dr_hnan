@@ -20,7 +20,7 @@
                             {{ trans('cruds.news.fields.id') }}
                         </th>
                         <td>
-                            {{ $news->id }}
+                            {{ $newss->id }}
                         </td>
                     </tr>
                     <tr>
@@ -28,7 +28,7 @@
                             {{ trans('cruds.news.fields.name') }}
                         </th>
                         <td>
-                            {{ $news->name }}
+                            {{ $newss->name }}
                         </td>
                     </tr>
                     <tr>
@@ -36,7 +36,7 @@
                             {{ trans('cruds.news.fields.description') }}
                         </th>
                         <td>
-                            {!! $news->description !!}
+                            {!! $newss->description !!}
                         </td>
                     </tr>
                     <tr>
@@ -44,9 +44,9 @@
                             {{ trans('cruds.news.fields.photo') }}
                         </th>
                         <td>
-                            @if($news->photo)
-                                <a href="{{ $news->photo->getUrl() }}" target="_blank" style="display: inline-block">
-                                    <img src="{{ $news->photo->getUrl('thumb') }}">
+                            @if($newss->photo)
+                                <a href="{{ $newss->photo->getUrl() }}" target="_blank" style="display: inline-block">
+                                    <img src="{{ $newss->photo->getUrl('thumb') }}">
                                 </a>
                             @endif
                         </td>
@@ -56,7 +56,7 @@
                             {{ trans('cruds.news.fields.date') }}
                         </th>
                         <td>
-                            {{ $news->date }}
+                            {{ $newss->date }}
                         </td>
                     </tr>
                 </tbody>
