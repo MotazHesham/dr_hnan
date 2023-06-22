@@ -29,6 +29,7 @@ class Kernel extends HttpKernel
         'verified'         => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'staff' => \App\Http\Middleware\Staff::class, 
         'client' => \App\Http\Middleware\Client::class,
+        'consultant' => \App\Http\Middleware\Consultant::class,
     ];
 
     protected $middlewareGroups = [

@@ -16,10 +16,12 @@ class Staff
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->user_type == 'client'){ 
-            return redirect()->route('client.home');
-        }elseif(Auth::user()->user_type == 'staff'){
+        if(Auth::user()->user_type == 'staff'){ 
             return $next($request);
+        }elseif(Auth::user()->user_type == 'consultant'){
+            return redirect()->route('consultant.home');
+        }elseif(Auth::user()->user_type == 'client'){
+            return redirect()->route('client.home');
         }else{
             Auth::logout();
             return redirect()->route('frontend.home');

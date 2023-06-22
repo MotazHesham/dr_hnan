@@ -21,6 +21,17 @@ class StoreConsultantRequest extends FormRequest
                 'string',
                 'required',
             ],
+            'email' => [
+                'required',
+                'unique:users',
+            ],
+            'phone_number' => [
+                'string',
+                'required',
+            ],
+            'password' => [
+                'required',
+            ],
             'short_description' => [
                 'string',
                 'required',

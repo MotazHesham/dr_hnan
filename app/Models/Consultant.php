@@ -27,7 +27,7 @@ class Consultant extends Model implements HasMedia
     ];
 
     protected $fillable = [
-        'name',
+        'user_id',
         'short_description',
         'description',
         'created_at',
@@ -56,5 +56,10 @@ class Consultant extends Model implements HasMedia
         }
 
         return $file;
+    }
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

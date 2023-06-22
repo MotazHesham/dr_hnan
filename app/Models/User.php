@@ -29,6 +29,7 @@ class User extends Authenticatable
     public const USER_TYPE_SELECT = [
         'staff'  => 'staff',
         'client' => 'client',
+        'consultant' => 'consultant',
     ];
 
     protected $dates = [

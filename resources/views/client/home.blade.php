@@ -1,5 +1,6 @@
 @extends('layouts.client')
 
 @section('content')
-This is Client HOme
+    This is Client Home...
+    Statistics Comming Soon
 @endsection

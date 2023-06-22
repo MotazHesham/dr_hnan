@@ -12,6 +12,7 @@ use App\Models\Service;
 use App\Models\User;
 use Gate;
 use Illuminate\Http\Request;
+use Laravel\Ui\Presets\React;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
@@ -22,6 +23,9 @@ class RequestServiceController extends Controller
 
     public function update_status($id,$status){
         $requestService = RequestService::findOrFail($id);
+        if($status == 'accept'){
+            $requestService->stages = 'contract';
+        }
         $requestService->status = $status;
         $requestService->save();
         alert('تم بنجاح');
@@ -70,7 +74,7 @@ class RequestServiceController extends Controller
                     $contract = '<a href="' . $row->contract->getUrl() . '" target="_blank">' . trans('global.downloadFile') . '</a>';
                 }else{
                     if($row->status == 'accept'){
-                        $contract = '<a class="btn btn-xs btn-info" href="'. route("admin.request-services.edit",$row->id) .'"> أرسال العقد </a>  ';
+                        $contract = '<a class="btn btn-xs btn-info" href="'. route("admin.request-services.show",$row->id) .'"> أرسال العقد </a>  ';
                     }else{
                         $contract = '';
                     }
@@ -135,10 +139,11 @@ class RequestServiceController extends Controller
         return view('admin.requestServices.edit', compact('requestService'));
     }
 
-    public function update(Request $request, RequestService $requestService)
+    public function update(UpdateRequestServiceRequest $request, RequestService $requestService)
     {
         $requestService->update($request->all());
 
+        $alert_body = '';
         if ($request->input('contract', false)) {
             if (!$requestService->contract || $request->input('contract') !== $requestService->contract->file_name) {
                 if ($requestService->contract) {
@@ -146,12 +151,31 @@ class RequestServiceController extends Controller
                 }
                 $requestService->addMedia(storage_path('tmp/uploads/' . basename($request->input('contract'))))->toMediaCollection('contract');
             }
+            $alert_body = 'تم أرسال العقد للعميل بنجاح وفي أنتظار قبول الشروط والأحكام';
         } elseif ($requestService->contract) {
             $requestService->contract->delete();
         }
 
-        alert('تم بنجاح','تم أرسال العقد للعميل بنجاح وفي أنتظار قبول الشروط والأحكام','success');
-        return redirect()->route('admin.request-services.index');
+        alert('تم بنجاح',$alert_body,'success'); 
+        return redirect()->route('admin.request-services.show',$requestService->id);
+    }
+
+    public function update_stages(Request $request)
+    {
+        $requestService = RequestService::findOrFail($request->id); 
+        $alert_body = ''; 
+        if($request->stages == 'working'){
+            $requestService->update($request->all()); 
+            $alert_body = 'تم التحويل إلي المستشار لبدء التنفيذ';
+            alert('تم بنجاح',$alert_body,'success'); 
+        }elseif($request->stages == 'delivered'){
+            $requestService->update($request->all()); 
+            $alert_body = 'تم التحويل إلي المستشار لأرسال باقي الملفات';
+            alert('تم بنجاح',$alert_body,'success'); 
+        }else{
+            alert('error','','error');
+        }
+        return redirect()->route('admin.request-services.show',$requestService->id);
     }
 
     public function show(RequestService $requestService)

@@ -16,8 +16,16 @@ class UpdateConsultantRequest extends FormRequest
 
     public function rules()
     {
-        return [
+        return [ 
             'name' => [
+                'string',
+                'required',
+            ],
+            'email' => [
+                'required',
+                'unique:users,email,' . request()->user_id,
+            ], 
+            'phone_number' => [
                 'string',
                 'required',
             ],

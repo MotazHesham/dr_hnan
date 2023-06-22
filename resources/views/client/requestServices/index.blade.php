@@ -24,17 +24,14 @@
                             {{ trans('cruds.requestService.fields.id') }}
                         </th>
                         <th>
-                            {{ trans('cruds.requestService.fields.user') }}
+                            {{ trans('cruds.requestService.fields.consultant') }}
                         </th>
                         <th>
                             {{ trans('cruds.requestService.fields.service') }}
                         </th>
                         <th>
                             {{ trans('cruds.requestService.fields.contract') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.requestService.fields.contract_accept') }}
-                        </th>
+                        </th> 
                         <th>
                             {{ trans('cruds.requestService.fields.status') }}
                         </th>
@@ -69,8 +66,8 @@
                         name: 'id'
                     },
                     {
-                        data: 'user_name',
-                        name: 'user.name'
+                        data: 'consultant_name',
+                        name: 'consultant.name'
                     },
                     {
                         data: 'service_name',
@@ -81,10 +78,6 @@
                         name: 'contract',
                         sortable: false,
                         searchable: false
-                    },
-                    {
-                        data: 'contract_accept',
-                        name: 'contract_accept'
                     },
                     {
                         data: 'status',

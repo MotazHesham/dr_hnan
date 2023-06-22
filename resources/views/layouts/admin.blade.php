@@ -45,7 +45,7 @@
                 <i class="fas fa-fw fa-bars"></i>
             </button>
 
-            <a class="c-header-brand d-lg-none" href="#">{{ trans('panel.site_title') }}</a>
+            <a class="c-header-brand d-lg-none" href="#">{{ trans('panel.site_title') }} &nbsp; <span class="badge badge-danger">الأدارة</span></a>
 
             <button class="c-header-toggler mfs-3 d-md-down-none" type="button" responsive="true">
                 <i class="fas fa-fw fa-bars"></i>
@@ -62,7 +62,8 @@
                             @foreach (config('panel.available_languages') as $langLocale => $langName)
                                 <a class="dropdown-item"
                                     href="{{ url()->current() }}?change_language={{ $langLocale }}">{{ strtoupper($langLocale) }}
-                                    ({{ $langName }})</a>
+                                    ({{ $langName }})
+                                </a>
                             @endforeach
                         </div>
                     </li>
@@ -80,8 +81,7 @@
                             @endif
                         </a>
                         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                            @if (count(
-                                    $alerts = \Auth::user()->userUserAlerts()->withPivot('read')->limit(10)->orderBy('created_at', 'ASC')->get()->reverse()) > 0)
+                            @if (count($alerts = \Auth::user()->userUserAlerts()->withPivot('read')->limit(10)->orderBy('created_at', 'ASC')->get()->reverse()) > 0)
                                 @foreach ($alerts as $alert)
                                     <div class="dropdown-item">
                                         <a href="{{ $alert->alert_link ? $alert->alert_link : '#' }}" target="_blank"
@@ -172,12 +172,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
 
+    <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
     <script>
-        function showFrontendAlert(type, title, message){
-            swal({ 
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher('0097d6ca8979ff2a1b9c', {
+            cluster: 'eu'
+        }); 
+    </script>
+    <script>
+        function showFrontendAlert(type, title, message) {
+            swal({
                 title: title,
                 text: message,
-                type: type, 
+                type: type,
                 showConfirmButton: 'Okay',
                 timer: 3000
             });

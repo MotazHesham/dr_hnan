@@ -307,10 +307,10 @@ class PermissionsTableSeeder extends Seeder
             // 'id'    => $i++,
             //     'title' => 'request_service_create',
             // ],
-            // [
-            // 'id'    => $i++,
-            //     'title' => 'request_service_edit',
-            // ],
+            [
+            'id'    => $i++,
+                'title' => 'request_service_edit',
+            ],
             [
                 'id'    => $i++,
                 'title' => 'request_service_show',

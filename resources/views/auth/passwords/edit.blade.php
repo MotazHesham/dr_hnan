@@ -1,4 +1,14 @@
-@extends('layouts.admin')
+@php
+    if(auth()->user()->user_type == 'staff') {
+        $extend = 'layouts.admin';
+    }elseif(auth()->user()->user_type == 'client') {
+        $extend = 'layouts.client';
+    }elseif(auth()->user()->user_type == 'consultant'){ 
+        $extend = 'layouts.consultant';
+    }
+@endphp
+
+@extends($extend)
 @section('content')
 
 <div class="row">

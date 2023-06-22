@@ -7,6 +7,8 @@ Route::group(['prefix' => 'client', 'as' => 'client.', 'namespace' => 'Client', 
     Route::get('/', 'HomeController@index')->name('home');  
 
     // Request Service
+    Route::post('request-services/update_cost_1', 'RequestServiceController@update_cost_1')->name('request-services.update_cost_1');
+    Route::post('request-services/update_cost_2', 'RequestServiceController@update_cost_2')->name('request-services.update_cost_2');
     Route::delete('request-services/destroy', 'RequestServiceController@massDestroy')->name('request-services.massDestroy');
     Route::post('request-services/media', 'RequestServiceController@storeMedia')->name('request-services.storeMedia');
     Route::post('request-services/ckmedia', 'RequestServiceController@storeCKEditorImages')->name('request-services.storeCKEditorImages');

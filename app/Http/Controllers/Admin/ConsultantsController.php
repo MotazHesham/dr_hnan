@@ -8,6 +8,7 @@ use App\Http\Requests\MassDestroyConsultantRequest;
 use App\Http\Requests\StoreConsultantRequest;
 use App\Http\Requests\UpdateConsultantRequest;
 use App\Models\Consultant;
+use App\Models\User;
 use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -35,7 +36,19 @@ class ConsultantsController extends Controller
 
     public function store(StoreConsultantRequest $request)
     {
-        $consultant = Consultant::create($request->all());
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone_number' => $request->phone_number,
+            'password' => bcrypt($request->password),
+            'user_type' => 'consultant',
+        ]);
+
+        $consultant = Consultant::create([
+            'short_description' => $request->short_description,
+            'description' => $request->description,
+            'user_id' => $user->id
+        ]);
 
         if ($request->input('photo', false)) {
             $consultant->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
@@ -57,7 +70,10 @@ class ConsultantsController extends Controller
 
     public function update(UpdateConsultantRequest $request, Consultant $consultant)
     {
-        $consultant->update($request->all());
+        $consultant->update([
+            'short_description' => $request->short_description,
+            'description' => $request->description,
+        ]);
 
         if ($request->input('photo', false)) {
             if (! $consultant->photo || $request->input('photo') !== $consultant->photo->file_name) {
@@ -69,6 +85,15 @@ class ConsultantsController extends Controller
         } elseif ($consultant->photo) {
             $consultant->photo->delete();
         }
+
+        $user = User::find($request->user_id);
+
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password == null ? $user->password : bcrypt($request->password), 
+            'phone_number' => $request->phone_number,  
+        ]);
 
         return redirect()->route('admin.consultants.index');
     }

@@ -17,13 +17,22 @@ class UpdateRequestServiceRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => [
-                'required',
-                'integer',
+            'contract' => [
+                'required', 
             ],
-            'service_id' => [
-                'required',
-                'integer',
+            'cost_1' => [
+                'required', 
+            ],
+            'cost_2' => [
+                'required', 
+            ],
+            'start_date' => [
+                'required', 
+                'date_format:' . config('panel.date_format'),
+            ],
+            'end_date' => [
+                'required', 
+                'date_format:' . config('panel.date_format'),
             ],
         ];
     }

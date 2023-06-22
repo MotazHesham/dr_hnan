@@ -324,4 +324,54 @@ return [
     'messenger'                      => 'مراسل',
     'success'                      => 'تم بنجاح',
 
+    'stages' => [
+        'contract' => [
+            'contract' => 'info',
+            'cost_1_pending' => 'light',
+            'working' => 'light',
+            'cost_2_pending' => 'light',
+            'delivered' => 'light',
+            'done' => 'light',
+        ],
+        'cost_1_pending' => [
+            'contract' => 'success',
+            'cost_1_pending' => 'info',
+            'working' => 'light',
+            'cost_2_pending' => 'light',
+            'delivered' => 'light',
+            'done' => 'light',
+        ],
+        'working' => [
+            'contract' => 'success',
+            'cost_1_pending' => 'success',
+            'working' => 'info',
+            'cost_2_pending' => 'light',
+            'delivered' => 'light',
+            'done' => 'light',
+        ],
+        'cost_2_pending' => [
+            'contract' => 'success',
+            'cost_1_pending' => 'success',
+            'working' => 'success',
+            'cost_2_pending' => 'info',
+            'delivered' => 'light',
+            'done' => 'light',
+        ],
+        'delivered' => [
+            'contract' => 'success',
+            'cost_1_pending' => 'success',
+            'working' => 'success',
+            'cost_2_pending' => 'success',
+            'delivered' => 'info',
+            'done' => 'light',
+        ],
+        'done' => [
+            'contract' => 'success',
+            'cost_1_pending' => 'success',
+            'working' => 'success',
+            'cost_2_pending' => 'success',
+            'delivered' => 'success',
+            'done' => 'success',
+        ],
+    ]
 ];

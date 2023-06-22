@@ -15,9 +15,11 @@ class Client
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {
+    { 
         if(Auth::user()->user_type == 'staff'){ 
             return redirect()->route('admin.home');
+        }elseif(Auth::user()->user_type == 'consultant'){
+            return redirect()->route('consultant.home');
         }elseif(Auth::user()->user_type == 'client'){
             return $next($request);
         }else{
