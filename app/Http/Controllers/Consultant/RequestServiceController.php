@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Models\Comment;
 use App\Models\RequestService;
-use App\Models\Service;  
+use App\Models\Service;
+use App\Models\UserAlert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
@@ -23,8 +24,21 @@ class RequestServiceController extends Controller
             return redirect()->route('consultant.request-services.show',$requestService->id);
         }
 
+        if(!$request->has('finished_files')){ 
+            alert('الملفات النهائية مطلوبة','','error');
+            return redirect()->route('consultant.request-services.show',$requestService->id);
+        }
+
         $requestService->stages = $request->stages;
         $requestService->done_time = date(config('panel.date_format') . ' ' . config('panel.time_format'));
+        foreach ($request->input('finished_files', []) as $file) {
+            $requestService->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('finished_files');
+        } 
+        $userAlert = UserAlert::create([
+            'alert_text' => 'تم الأنتهاء من العمل في الخدمة رقم #'. $requestService->id .' وفي أنتطار أرسال الدفعة الثانية',
+            'alert_link' => route('client.request-services.show',$requestService->id),
+        ]);
+        $userAlert->users()->sync([$requestService->user_id]);
         $requestService->save();
         alert('تم بنجاح','تم أرسال رسالة إلي العميل بأنتهاء العمل','success'); 
         return redirect()->route('consultant.request-services.show',$requestService->id);

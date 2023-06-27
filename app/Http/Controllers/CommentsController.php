@@ -31,6 +31,7 @@ class CommentsController extends Controller
         }
 
         $data = [
+            'request_service_id' => $request->request_service_id,
             'user_id' => Auth::id(),
             'user_name' => Auth::user()->name,
             'message' => $request->comment, 

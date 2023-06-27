@@ -19,6 +19,7 @@ class ChattingMessages implements ShouldBroadcast
      *
      * @return void
      */
+    public $request_service_id;
     public $user_id;
     public $user_name;
     public $message;
@@ -26,6 +27,7 @@ class ChattingMessages implements ShouldBroadcast
 
     public function __construct($data)
     {
+        $this->request_service_id = $data['request_service_id'];
         $this->user_id = $data['user_id'];
         $this->user_name = $data['user_name'];
         $this->message = $data['message'];

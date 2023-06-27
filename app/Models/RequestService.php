@@ -22,6 +22,9 @@ class RequestService extends Model implements HasMedia
         'contract',
         'cost_1_file',
         'cost_2_file',
+        'finished_files',
+        'finished_files_from_admin',
+        'certificates',
     ];
 
     protected $dates = [
@@ -131,5 +134,20 @@ class RequestService extends Model implements HasMedia
     public function getCost2FileAttribute()
     {
         return $this->getMedia('cost_2_file')->last();
+    }
+    
+    public function getFinishedFilesAttribute()
+    { 
+        return $this->getMedia('finished_files');
+    }
+
+    public function getCertificatesAttribute()
+    { 
+        return $this->getMedia('certificates');
+    }
+
+    public function getFinishedFilesFromAdminAttribute()
+    { 
+        return $this->getMedia('finished_files_from_admin');
     }
 }

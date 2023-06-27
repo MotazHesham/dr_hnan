@@ -10,6 +10,7 @@ use App\Http\Requests\UpdateRequestServiceRequest;
 use App\Models\RequestService;
 use App\Models\Service;
 use App\Models\User;
+use App\Models\UserAlert;
 use Gate;
 use Illuminate\Http\Request;
 use Laravel\Ui\Presets\React;
@@ -152,6 +153,11 @@ class RequestServiceController extends Controller
                 $requestService->addMedia(storage_path('tmp/uploads/' . basename($request->input('contract'))))->toMediaCollection('contract');
             }
             $alert_body = 'تم أرسال العقد للعميل بنجاح وفي أنتظار قبول الشروط والأحكام';
+            $userAlert = UserAlert::create([
+                'alert_text' => 'تم أرسال العقد للخدمة المطلوبة رقم #'.$requestService->id.' وفي أنتطار القبول وأرسال الدفعة الأولي',
+                'alert_link' => route('client.request-services.show',$requestService->id),
+            ]);
+            $userAlert->users()->sync([$requestService->user_id]);
         } elseif ($requestService->contract) {
             $requestService->contract->delete();
         }
@@ -169,8 +175,30 @@ class RequestServiceController extends Controller
             $alert_body = 'تم التحويل إلي المستشار لبدء التنفيذ';
             alert('تم بنجاح',$alert_body,'success'); 
         }elseif($request->stages == 'delivered'){
+            if(!$request->has('finished_files_from_admin')){ 
+                alert('الملفات النهائية مطلوبة','','error');
+                return redirect()->route('admin.request-services.show',$requestService->id);
+            }
+
             $requestService->update($request->all()); 
-            $alert_body = 'تم التحويل إلي المستشار لأرسال باقي الملفات';
+            
+            foreach ($request->input('finished_files_from_admin', []) as $file) {
+                $requestService->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('finished_files_from_admin');
+            }
+            $alert_body = 'تم أرسال الملفات النهائية للعميل';
+            alert('تم بنجاح',$alert_body,'success'); 
+        }elseif($request->stages == 'done'){
+            if(!$request->has('certificates')){ 
+                alert('شهادة الأنجاز مطلوبة','','error');
+                return redirect()->route('admin.request-services.show',$requestService->id);
+            }
+
+            $requestService->update($request->all()); 
+            
+            foreach ($request->input('certificates', []) as $file) {
+                $requestService->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('certificates');
+            }
+            $alert_body = 'تم أرسال شهادة الأنجاز للعميل';
             alert('تم بنجاح',$alert_body,'success'); 
         }else{
             alert('error','','error');

@@ -391,6 +391,10 @@ return [
             'status_helper'          => ' ',
             'stages'                 => 'المرحلة',
             'stages_helper'          => ' ',
+            'finished_files'                 => 'الملفات النهائية',
+            'finished_files_helper'          => ' ',
+            'finished_files_from_admin'                 => 'الملفات النهائية من الأدارة',
+            'finished_files_from_admin_helper'          => ' ',
         ],
     ],
     'client' => [

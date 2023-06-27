@@ -255,8 +255,8 @@
                                 <small style="font-weight:bold"><br>تم تسليم العمل</small>
                                 <br>
                                 <button class="btn btn-{{ $stage_delivered_color }} rounded-pill collapsed"
-                                    data-toggle="collapse" data-target="#collapseFive" aria-expanded="false"
-                                    aria-controls="collapseFive">
+                                    data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
+                                    aria-controls="collapseThree">
                                     <span>
                                         @if ($stage_delivered_color == 'success')
                                             <i class="fas fa-check"></i>
@@ -292,21 +292,17 @@
                                     aria-labelledby="headingTwo" data-parent="#accordionExample">
                                     @include('partials.request_service.cost_1_pending')
                                 </div>
-                                <div id="collapseThree" class="collapse @if ($stage_working_color == 'info') show @endif"
+                                <div id="collapseThree" class="collapse @if ($stage_working_color == 'info' || $stage_delivered_color == 'info') show @endif"
                                     aria-labelledby="headingThree" data-parent="#accordionExample">
                                     @include('partials.request_service.working')
                                 </div>
                                 <div id="collapseFour" class="collapse @if ($stage_cost_2_pending_color == 'info') show @endif"
                                     aria-labelledby="headingFour" data-parent="#accordionExample">
                                     @include('partials.request_service.cost_2_pending')
-                                </div>
-                                <div id="collapseFive" class="collapse @if ($stage_delivered_color == 'info') show @endif"
-                                    aria-labelledby="headingFive" data-parent="#accordionExample">
-                                    Still in Progress...
-                                </div>
+                                </div> 
                                 <div id="collapseSix" class="collapse @if ($stage_done_color == 'success') show @endif"
                                     aria-labelledby="headingSix" data-parent="#accordionExample">
-                                    Still in Progress...
+                                    @include('partials.request_service.done')
                                 </div>
                             </div>
                         </div>
@@ -323,47 +319,49 @@
         var channel = pusher.subscribe('chatting');
 
         channel.bind('App\\Events\\ChattingMessages', function(obj) {
-            if('{{ $user_type == "staff" }}'){
-                if(obj['user_id'] == '{{$requestService->consultant_id}}'){
-                    var messageHtml = '<div class="outgoing_msg_extra">';
-                }else{ 
-                    var messageHtml = '<div class="incoming_msg">';
+            if(obj['request_service_id'] == '{{$requestService->id}}'){ 
+                if('{{ $user_type == "staff" }}'){
+                    if(obj['user_id'] == '{{$requestService->consultant_id}}'){
+                        var messageHtml = '<div class="outgoing_msg_extra">';
+                    }else{ 
+                        var messageHtml = '<div class="incoming_msg">';
+                    }
+                }else{
+                    if (obj['user_id'] != '{{ auth()->user()->id }}') {
+                        var messageHtml = '<div class="incoming_msg">';
+                    } else {
+                        var messageHtml = '<div class="outgoing_msg">';
+                    }
                 }
-            }else{
-                if (obj['user_id'] != '{{ auth()->user()->id }}') {
-                    var messageHtml = '<div class="incoming_msg">';
-                } else {
-                    var messageHtml = '<div class="outgoing_msg">';
-                }
-            }
-            messageHtml += '<div>';
-            messageHtml += '<b>' + obj['user_name'] + '</b>';
-            messageHtml += '<p>';
-            messageHtml += obj['message'] ? obj['message'] : '';
-            if(obj['files_urls']){
                 messageHtml += '<div>';
-                    obj['files_urls'].forEach(element => { 
-                        if(element['mime_type'] == 'image/jpeg'){
-                            messageHtml += '<a href="'+element['original_url']+'" target="_blank">'; 
-                            messageHtml +=  '<img src="'+element['preview_url']+'" style="border-radius: 15px;margin:5px" alt="">';
-                            messageHtml += '</a>';
-                        }else{
-                            messageHtml += '<div style="margin:5px">';
-                            messageHtml += '<a href="'+element['original_url']+'" target="_blank">'; 
-                            var string = element['file_name'];
-                            var parts = string.split("_");
-                            var trimmedString = parts.slice(1).join("_");
-                            messageHtml += trimmedString;
-                            messageHtml += '</a>';
-                            messageHtml += '</div>';
-                        }
-                    });
+                messageHtml += '<b>' + obj['user_name'] + '</b>';
+                messageHtml += '<p>';
+                messageHtml += obj['message'] ? obj['message'] : '';
+                if(obj['files_urls']){
+                    messageHtml += '<div>';
+                        obj['files_urls'].forEach(element => { 
+                            if(element['mime_type'] == 'image/jpeg'){
+                                messageHtml += '<a href="'+element['original_url']+'" target="_blank">'; 
+                                messageHtml +=  '<img src="'+element['preview_url']+'" style="border-radius: 15px;margin:5px" alt="">';
+                                messageHtml += '</a>';
+                            }else{
+                                messageHtml += '<div style="margin:5px">';
+                                messageHtml += '<a href="'+element['original_url']+'" target="_blank">'; 
+                                var string = element['file_name'];
+                                var parts = string.split("_");
+                                var trimmedString = parts.slice(1).join("_");
+                                messageHtml += trimmedString;
+                                messageHtml += '</a>';
+                                messageHtml += '</div>';
+                            }
+                        });
+                    messageHtml += '</div>';
+                } 
+                messageHtml += '</p>';   
                 messageHtml += '</div>';
-            } 
-            messageHtml += '</p>';   
-            messageHtml += '</div>';
-            messageHtml += '</div>';
-            $('.message-box .messages').prepend(messageHtml);
+                messageHtml += '</div>';
+                $('.message-box .messages').prepend(messageHtml); 
+            }
         });
 
         $("#store-comment").submit(function(e) {
