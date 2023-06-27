@@ -10,6 +10,7 @@ class CreateConsultantsTable extends Migration
     {
         Schema::create('consultants', function (Blueprint $table) {
             $table->bigIncrements('id'); 
+            $table->string('specialization');
             $table->string('short_description');
             $table->longText('description');
             $table->unsignedBigInteger('user_id');

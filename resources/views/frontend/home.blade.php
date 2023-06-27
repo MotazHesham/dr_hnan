@@ -156,7 +156,7 @@
                                 <div class="home-programs  wow   bounceInLeft" class="" data-wow-duration="1s"
                                     data-wow-delay="4s "> برنامج الحوكمة </div>
                                 <div class="home-programs  wow   bounceInRight" class="" data-wow-duration="1s"
-                                    data-wow-delay="3s "> برنامج تطوير الأعمال والتمييز المؤسسي</div>
+                                    data-wow-delay="3s "> برنامج تطوير الأعمال والتميز المؤسسي</div>
                                 <div class="home-programs  wow   bounceIn" class="" data-wow-duration="1s"
                                     data-wow-delay="2s "> برنامج الجودة وتطوير الأداء</div>
                                 <div class="home-programs  wow   bounceInRight " class="" data-wow-duration="1s"

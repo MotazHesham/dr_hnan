@@ -77,6 +77,8 @@ return [
             'id_helper'                => ' ',
             'name'                     => 'الأسم',
             'name_helper'              => ' ',
+            'specialization'              => 'التخصص',
+            'specialization_helper'       => ' ',
             'description'              => 'الوصف',
             'description_helper'       => ' ',
             'photo'                    => 'الصورة',
@@ -234,8 +236,8 @@ return [
         ],
     ],
     'quotation' => [
-        'title'          => 'طلبات عرض السعر',
-        'title_singular' => 'طلبات عرض السعر',
+        'title'          => 'طلبات الأستشارة المجانية',
+        'title_singular' => 'طلب الأستشارة المجانية',
         'fields'         => [
             'id'                  => 'ID',
             'id_helper'           => ' ',

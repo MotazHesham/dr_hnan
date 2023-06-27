@@ -32,6 +32,9 @@
                             {{ trans('cruds.user.fields.email') }}
                         </th>
                         <th>
+                            {{ trans('cruds.consultant.fields.specialization') }}
+                        </th>
+                        <th>
                             {{ trans('cruds.consultant.fields.short_description') }}
                         </th>
                         <th>
@@ -59,6 +62,9 @@
                             </td>
                             <td>
                                 {{ $consultant->user->email ?? '' }}
+                            </td>
+                            <td>
+                                {{ $consultant->specialization ?? '' }}
                             </td>
                             <td>
                                 {{ $consultant->short_description ?? '' }}

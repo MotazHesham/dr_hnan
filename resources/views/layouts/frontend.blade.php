@@ -50,7 +50,7 @@
     
     <div class="price-requist">
         <a href="javascript:void(0)" class="navs-link nav-join" data-section="ms-pricelist-section">
-            طلب عرض سعر
+            طلب استشارة مجانية
         </a>
     </div>
 
@@ -58,6 +58,8 @@
 
     <div class="social-desktop">
         <ul class="">
+            <li><a class="ms-btn-1" href="https://wa.me/{{ $about_us->phone_number }}" target="_blank"><i class="fa fa-whatsapp"
+                        aria-hidden="true"></i></a></li>
             <li><a class="ms-btn-1" href="{{ $about_us->instagram }}" target="_blank"><i class="fa fa-instagram"
                         aria-hidden="true"></i></a></li>
             <li><a class="ms-btn-1" href="{{ $about_us->twitter }}" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
@@ -153,30 +155,115 @@
 
     <div class="popup" data-popup="popup-1">
         <div class="popup-inner sponsors_inner">
-
+            @php
+                $service_1 = \App\Models\Service::find(1);
+            @endphp
             <div class="experiense">
-                <h4>1 .برنامج تطوير الموارد البشرية </h4>
+                <h4>1 .برنامج الحوكمة </h4>
                 <ul class="timeline">
                     <li class="timeline-item">
                         <div class="timeline-block">
 
                             <div class="timeline-content">
-                                <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد
-                                    النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى
-                                    زيادة عدد الحروف التى يولدها التطبيق.
-                                    إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما
-                                    تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع
-                                    على وجه الخصوص، حيث يحتاج العميل فى كثير من الأحيان أن يطلع على صورة حقيقية لتصميم
-                                    الموقع.</p>
+                                <p>
+                                    <?php echo nl2br($service_1->description ?? ''); ?>
+                                </p>
                             </div>
                         </div>
                     </li>
 
 
                 </ul>
+                <a class="btn btn-dark" href="{{ route('register') }}">التسجيل في الخدمة</a>
             </div>
 
             <a class="popup-close " data-popup-close="popup-1" href="#">x</a>
+        </div>
+
+
+    </div>
+    <div class="popup" data-popup="popup-2-0">
+        <div class="popup-inner sponsors_inner">
+            @php
+                $service_2 = \App\Models\Service::find(2);
+            @endphp
+            <div class="experiense">
+                <h4>2 .برنامج تطوير الأعمال والتميز المؤسسي</h4>
+                <ul class="timeline">
+                    <li class="timeline-item">
+                        <div class="timeline-block">
+
+                            <div class="timeline-content">
+                                <p>
+                                    <?php echo nl2br($service_2->description ?? ''); ?>
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+
+
+                </ul>
+                <a class="btn btn-dark" href="{{ route('register') }}">التسجيل في الخدمة</a>
+            </div>
+
+            <a class="popup-close " data-popup-close="popup-2-0" href="#">x</a>
+        </div>
+
+
+    </div>
+    <div class="popup" data-popup="popup-3-0">
+        <div class="popup-inner sponsors_inner">
+            @php
+                $service_3 = \App\Models\Service::find(3);
+            @endphp
+            <div class="experiense">
+                <h4>3 .برنامج الجودة وتطوير الأداء</h4>
+                <ul class="timeline">
+                    <li class="timeline-item">
+                        <div class="timeline-block">
+
+                            <div class="timeline-content">
+                                <p>
+                                    <?php echo nl2br($service_3->description ?? ''); ?>
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+
+
+                </ul>
+                <a class="btn btn-dark" href="{{ route('register') }}">التسجيل في الخدمة</a>
+            </div>
+
+            <a class="popup-close " data-popup-close="popup-3-0" href="#">x</a>
+        </div>
+
+
+    </div>
+    <div class="popup" data-popup="popup-4-0">
+        <div class="popup-inner sponsors_inner">
+            @php
+                $service_4 = \App\Models\Service::find(4);
+            @endphp
+            <div class="experiense">
+                <h4>4 .برنامج تطوير الموارد البشرية </h4>
+                <ul class="timeline">
+                    <li class="timeline-item">
+                        <div class="timeline-block">
+
+                            <div class="timeline-content">
+                                <p>
+                                    <?php echo nl2br($service_4->description ?? ''); ?>
+                                </p>
+                            </div>
+                        </div>
+                    </li> 
+
+                </ul>
+                <a class="btn btn-dark" href="{{ route('register') }}">التسجيل في الخدمة</a>
+            </div>
+
+            <a class="popup-close " data-popup-close="popup-4-0" href="#">x</a>
         </div>
 
 

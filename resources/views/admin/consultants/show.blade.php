@@ -33,6 +33,14 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.consultant.fields.specialization') }}
+                        </th>
+                        <td>
+                            {{ $consultant->specialization }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.consultant.fields.short_description') }}
                         </th>
                         <td>

@@ -17,7 +17,7 @@
                 <div class="row m-b-minus-24px">
                     @foreach($consultants as $consultant)
                     @php
-                        $image = $consultant->photo ? $consultant->photo->getUrl('preview') : '';
+                        $image = $consultant->photo ? $consultant->photo->getUrl() : '';
                     @endphp
                     <div class="col-lg-3 col-md-6">
                         <div class="team-info">
@@ -25,7 +25,10 @@
                                         src="{{ $image }}" alt="news imag"></a>
                             </figure>
                             <div class="detail">
-                                <h3><a href="#"> {{ $consultant->name }}</a></h3>
+                                <h3><a href="#"> {{ $consultant->user ? $consultant->user->name : '' }}</a></h3>
+                                <b>
+                                    {{ $consultant->specialization ?? '' }}
+                                </b>
                                 <p>
                                     <?php echo nl2br($consultant->short_description ?? ''); ?>
                                 </p>

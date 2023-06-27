@@ -12,7 +12,7 @@
 
             <div class="col-md-9">
                 <div class="section-title">
-                    <h2> طلب عرض سعر <span> </span></h2>
+                    <h2> طلب استشارة مجانية <span> </span></h2>
                 </div>
                 <div class="row">
                     <div class="col-md-2">
@@ -54,7 +54,7 @@
 
 
 
-                            <button type="submit" class="btn btn-dark"> طلب عرض سعر</button>
+                            <button type="submit" class="btn btn-dark"> طلب استشارة مجانية</button>
                         </form>
                     </div>
                 </div>

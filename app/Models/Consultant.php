@@ -28,6 +28,7 @@ class Consultant extends Model implements HasMedia
 
     protected $fillable = [
         'user_id',
+        'specialization',
         'short_description',
         'description',
         'created_at',

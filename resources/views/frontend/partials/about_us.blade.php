@@ -63,7 +63,7 @@
                                 <div class="manager_cv">
                                     <a href="{{ $about_us->cv->getUrl() }}" data-section="hanan_cv" target="_blank">
                                         <h4>
-                                            <span>السيرة الذاتية لدكتورة حنان عابد </span>
+                                            <span>السيرة الذاتية للدكتورة حنان عابد </span>
                                         </h4>
                                     </a>
                                 </div>

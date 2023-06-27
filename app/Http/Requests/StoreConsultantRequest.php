@@ -32,6 +32,10 @@ class StoreConsultantRequest extends FormRequest
             'password' => [
                 'required',
             ],
+            'specialization' => [
+                'string',
+                'required',
+            ],
             'short_description' => [
                 'string',
                 'required',

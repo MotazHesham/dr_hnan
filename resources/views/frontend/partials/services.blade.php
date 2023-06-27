@@ -24,11 +24,11 @@
                     <map name="image-map">
                         <area target="" alt="1" title="1" data-popup-open="popup-1" href="#"
                             coords="258,87,778,9" shape="rect">
-                        <area target="" alt="2" title="2" href="#" coords="298,110,765,163"
+                        <area target="" alt="2" title="2" data-popup-open="popup-2-0" href="#" coords="298,110,765,163"
                             shape="rect">
-                        <area target="" alt="3" title="3" href="#" coords="771,263,354,196"
+                        <area target="" alt="3" title="3" data-popup-open="popup-3-0" href="#" coords="771,263,354,196"
                             shape="rect">
-                        <area target="" alt="4" title="4" href="#" coords="396,291,778,348"
+                        <area target="" alt="4" title="4" data-popup-open="popup-4-0" href="#" coords="396,291,778,348"
                             shape="rect">
                     </map>
                 </div>

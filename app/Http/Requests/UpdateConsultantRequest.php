@@ -29,6 +29,10 @@ class UpdateConsultantRequest extends FormRequest
                 'string',
                 'required',
             ],
+            'specialization' => [
+                'string',
+                'required',
+            ],
             'short_description' => [
                 'string',
                 'required',
