@@ -17,7 +17,7 @@
                 <div class="row m-b-minus-24px">
                     @foreach($consultants as $consultant)
                     @php
-                        $image = $consultant->photo ? $consultant->photo->getUrl() : '';
+                        $image = $consultant->photo ? $consultant->photo->getUrl('preview') : '';
                     @endphp
                     <div class="col-lg-3 col-md-6">
                         <div class="team-info">
@@ -36,8 +36,7 @@
                             </div>
                         </div>
                     </div> 
-                    @endforeach
-                    {{ $consultants->links() }}
+                    @endforeach 
                     {{-- <div class="col-md-12">
                         <div class="ms-pagination">
                             <ul>

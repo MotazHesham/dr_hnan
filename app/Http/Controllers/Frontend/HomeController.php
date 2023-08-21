@@ -27,7 +27,7 @@ class HomeController extends Controller
         $articles = Article::where('active',1)->orderBy('created_at','desc')->simplePaginate(8);
         $books = Book::where('active',1)->orderBy('created_at','desc')->simplePaginate(8);
         $samples = Sample::where('active',1)->orderBy('created_at','desc')->simplePaginate(8); 
-        $consultants = Consultant::orderBy('created_at','desc')->simplePaginate(4); 
+        $consultants = Consultant::orderBy('created_at','desc')->take(12)->get(); 
         $courses = Course::orderBy('created_at','desc')->simplePaginate(3);
         $news = News::orderBy('created_at','desc')->simplePaginate(3);
         $services = Service::all();
