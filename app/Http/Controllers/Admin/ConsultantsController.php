@@ -45,6 +45,7 @@ class ConsultantsController extends Controller
         ]);
 
         $consultant = Consultant::create([
+            'specialization' => $request->specialization,
             'short_description' => $request->short_description,
             'description' => $request->description,
             'user_id' => $user->id
@@ -73,6 +74,7 @@ class ConsultantsController extends Controller
         $consultant->update([
             'short_description' => $request->short_description,
             'description' => $request->description,
+            'specialization' => $request->specialization,
         ]);
 
         if ($request->input('photo', false)) {
