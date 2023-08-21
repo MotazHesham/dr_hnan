@@ -1,13 +1,5 @@
 @extends('layouts.consultant')
-@section('content')
-    <div style="margin-bottom: 10px;" class="row">
-        <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route('consultant.request-services.create') }}">
-                {{ trans('global.add') }} {{ trans('cruds.requestService.title_singular') }}
-            </a>
-        </div>
-    </div>
-
+@section('content') 
     <div class="card">
         <div class="card-header">
             {{ trans('cruds.requestService.title_singular') }} {{ trans('global.list') }}

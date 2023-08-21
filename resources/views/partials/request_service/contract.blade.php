@@ -131,7 +131,7 @@
         Dropzone.options.contractDropzone = {
             url: '{{ route('admin.request-services.storeMedia') }}',
             maxFilesize: 5, // MB
-            maxFiles: 1,
+            maxFiles: 1, 
             addRemoveLinks: true,
             headers: {
                 'X-CSRF-TOKEN': "{{ csrf_token() }}"
