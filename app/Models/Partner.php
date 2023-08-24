@@ -10,15 +10,14 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Consultant extends Model implements HasMedia
+class Partner extends Model implements HasMedia
 {
     use SoftDeletes, InteractsWithMedia, HasFactory;
 
-    public $table = 'consultants';
+    public $table = 'partners';
 
     protected $appends = [
-        'photo',
-        'cv',
+        'photo', 
     ];
 
     protected $dates = [
@@ -27,13 +26,9 @@ class Consultant extends Model implements HasMedia
         'deleted_at',
     ];
 
-    protected $fillable = [
-        'user_id',
-        'specialization',
-        'short_description',
-        'description',
-        'priorty',
-        'published',
+    protected $fillable = [ 
+        'name',
+        'website', 
         'created_at',
         'updated_at',
         'deleted_at',
@@ -47,8 +42,7 @@ class Consultant extends Model implements HasMedia
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')->fit('crop', 50, 50);
-        $this->addMediaConversion('preview')->fit('crop', 180, 180);
-        $this->addMediaConversion('preview2')->fit('crop', 550, 550);
+        $this->addMediaConversion('preview')->fit('crop', 200, 200); 
     }
 
     public function getPhotoAttribute()
@@ -57,20 +51,9 @@ class Consultant extends Model implements HasMedia
         if ($file) {
             $file->url       = $file->getUrl();
             $file->thumbnail = $file->getUrl('thumb');
-            $file->preview   = $file->getUrl('preview');
-            $file->preview2   = $file->getUrl('preview2');
+            $file->preview   = $file->getUrl('preview'); 
         }
 
         return $file;
-    }
-    
-    public function getCvAttribute()
-    {
-        return $this->getMedia('cv')->last();  
-    }
-    
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
+    }  
 }

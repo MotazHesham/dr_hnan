@@ -18,6 +18,14 @@ class ConsultantsController extends Controller
 {
     use MediaUploadingTrait;
 
+    public function update_statuses(Request $request){ 
+        $type = $request->type;
+        $consultant = Consultant::findOrFail($request->id);
+        $consultant->$type = $request->status; 
+        $consultant->save();
+        return 1;
+    }
+
     public function index()
     {
         abort_if(Gate::denies('consultant_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -48,11 +56,15 @@ class ConsultantsController extends Controller
             'specialization' => $request->specialization,
             'short_description' => $request->short_description,
             'description' => $request->description,
+            'priorty' => $request->priorty,
             'user_id' => $user->id
         ]);
 
         if ($request->input('photo', false)) {
             $consultant->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
+        }
+        if ($request->input('cv', false)) {
+            $consultant->addMedia(storage_path('tmp/uploads/' . basename($request->input('cv'))))->toMediaCollection('cv');
         }
 
         if ($media = $request->input('ck-media', false)) {
@@ -75,6 +87,7 @@ class ConsultantsController extends Controller
             'short_description' => $request->short_description,
             'description' => $request->description,
             'specialization' => $request->specialization,
+            'priorty' => $request->priorty,
         ]);
 
         if ($request->input('photo', false)) {
@@ -86,6 +99,16 @@ class ConsultantsController extends Controller
             }
         } elseif ($consultant->photo) {
             $consultant->photo->delete();
+        }
+        if ($request->input('cv', false)) {
+            if (! $consultant->cv || $request->input('cv') !== $consultant->cv->file_name) {
+                if ($consultant->cv) {
+                    $consultant->cv->delete();
+                }
+                $consultant->addMedia(storage_path('tmp/uploads/' . basename($request->input('cv'))))->toMediaCollection('cv');
+            }
+        } elseif ($consultant->cv) {
+            $consultant->cv->delete();
         }
 
         $user = User::find($request->user_id);

@@ -357,6 +357,26 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => $i++,
+                'title' => 'partner_create',
+            ],
+            [
+                'id'    => $i++,
+                'title' => 'partner_edit',
+            ],
+            [
+                'id'    => $i++,
+                'title' => 'partner_show',
+            ],
+            [
+                'id'    => $i++,
+                'title' => 'partner_delete',
+            ],
+            [
+                'id'    => $i++,
+                'title' => 'partner_access',
+            ],
+            [
+                'id'    => $i++,
                 'title' => 'profile_password_edit',
             ],
         ];

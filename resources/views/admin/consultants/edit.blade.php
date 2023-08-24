@@ -62,6 +62,16 @@
                 <span class="help-block">{{ trans('cruds.consultant.fields.specialization_helper') }}</span>
             </div>
             <div class="form-group">
+                <label class="required" for="priorty">{{ trans('cruds.consultant.fields.priorty') }}</label>
+                <input class="form-control {{ $errors->has('priorty') ? 'is-invalid' : '' }}" type="number" name="priorty" id="priorty" value="{{ old('priorty', $consultant->priorty) }}" required>
+                @if($errors->has('priorty'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('priorty') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.consultant.fields.priorty_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <label class="required" for="short_description">{{ trans('cruds.consultant.fields.short_description') }}</label>
                 <input class="form-control {{ $errors->has('short_description') ? 'is-invalid' : '' }}" type="text" name="short_description" id="short_description" value="{{ old('short_description', $consultant->short_description) }}" required>
                 @if($errors->has('short_description'))
@@ -93,6 +103,17 @@
                 <span class="help-block">{{ trans('cruds.consultant.fields.photo_helper') }}</span>
             </div>
             <div class="form-group">
+                <label class="required" for="cv">{{ trans('cruds.consultant.fields.cv') }}</label>
+                <div class="needsclick dropzone {{ $errors->has('cv') ? 'is-invalid' : '' }}" id="cv-dropzone">
+                </div>
+                @if ($errors->has('cv'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('cv') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.consultant.fields.cv_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}
                 </button>
@@ -106,6 +127,56 @@
 @endsection
 
 @section('scripts')
+<script>
+    Dropzone.options.cvDropzone = {
+        url: '{{ route('admin.consultants.storeMedia') }}',
+        maxFilesize: 5, // MB
+        maxFiles: 1,
+        addRemoveLinks: true,
+        headers: {
+            'X-CSRF-TOKEN': "{{ csrf_token() }}"
+        },
+        params: {
+            size: 5
+        },
+        success: function(file, response) {
+            $('form').find('input[name="cv"]').remove()
+            $('form').append('<input type="hidden" name="cv" value="' + response.name + '">')
+        },
+        removedfile: function(file) {
+            file.previewElement.remove()
+            if (file.status !== 'error') {
+                $('form').find('input[name="cv"]').remove()
+                this.options.maxFiles = this.options.maxFiles + 1
+            }
+        },
+        init: function() {
+            @if (isset($consultant) && $consultant->cv)
+                var file = {!! json_encode($consultant->cv) !!}
+                this.options.addedfile.call(this, file)
+                file.previewElement.classList.add('dz-complete')
+                $('form').append('<input type="hidden" name="cv" value="' + file.file_name + '">')
+                this.options.maxFiles = this.options.maxFiles - 1
+            @endif
+        },
+        error: function(file, response) {
+            if ($.type(response) === 'string') {
+                var message = response //dropzone sends it's own error messages in string
+            } else {
+                var message = response.errors.file
+            }
+            file.previewElement.classList.add('dz-error')
+            _ref = file.previewElement.querySelectorAll('[data-dz-errormessage]')
+            _results = []
+            for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+                node = _ref[_i]
+                _results.push(node.textContent = message)
+            }
+
+            return _results
+        }
+    }
+</script>
 <script>
     Dropzone.options.photoDropzone = {
     url: '{{ route('admin.consultants.storeMedia') }}',

@@ -88,4 +88,9 @@ return [
     'about_us_edit' => 'تعديل من نحن',
     'about_us_access' => 'عرض قائمة من نحن',
     'profile_password_edit' => 'تعديل كلمة المرور',
+    'partner_create' => 'أضافة شركاء النجاح',
+    'partner_edit' => 'تعديل شركاء النجاح',
+    'partner_show' => 'عرض شركاء النجاح',
+    'partner_delete' => 'حذف شركاء النجاح',
+    'partner_access' => 'عرض قائمة شركاء النجاح',
 ];

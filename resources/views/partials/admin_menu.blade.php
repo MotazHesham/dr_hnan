@@ -149,6 +149,16 @@
                 </a>
             </li>
         @endcan
+        @can('partner_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.partners.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/partners") || request()->is("admin/partners/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-handshake c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.partner.title') }}
+                </a>
+            </li>
+        @endcan
         @can('knowledge_center_access')
             <li class="c-sidebar-nav-dropdown {{ request()->is("admin/articles*") ? "c-show" : "" }} {{ request()->is("admin/books*") ? "c-show" : "" }} {{ request()->is("admin/samples*") ? "c-show" : "" }}">
                 <a class="c-sidebar-nav-dropdown-toggle" href="#">

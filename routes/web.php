@@ -35,9 +35,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Consultants
     Route::delete('consultants/destroy', 'ConsultantsController@massDestroy')->name('consultants.massDestroy');
+    Route::post('consultants/update_statuses', 'ConsultantsController@update_statuses')->name('consultants.update_statuses');
     Route::post('consultants/media', 'ConsultantsController@storeMedia')->name('consultants.storeMedia');
     Route::post('consultants/ckmedia', 'ConsultantsController@storeCKEditorImages')->name('consultants.storeCKEditorImages');
     Route::resource('consultants', 'ConsultantsController');
+
+    // Partners
+    Route::delete('partners/destroy', 'PartnersController@massDestroy')->name('partners.massDestroy'); 
+    Route::post('partners/media', 'PartnersController@storeMedia')->name('partners.storeMedia');
+    Route::post('partners/ckmedia', 'PartnersController@storeCKEditorImages')->name('partners.storeCKEditorImages');
+    Route::resource('partners', 'PartnersController');
 
     // Audit Logs
     Route::resource('audit-logs', 'AuditLogsController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);

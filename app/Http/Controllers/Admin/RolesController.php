@@ -52,10 +52,7 @@ class RolesController extends Controller
     }
 
     public function update(UpdateRoleRequest $request, Role $role)
-    {
-        if($role->id == 1){  
-            alert('Cant Update the admin Role','','warning');
-        }
+    { 
         $role->update($request->all());
         $role->permissions()->sync($request->input('permissions', []));
 

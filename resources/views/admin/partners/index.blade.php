@@ -1,47 +1,38 @@
 @extends('layouts.admin')
 @section('content')
-    @can('consultant_create')
+    @can('partner_create')
         <div style="margin-bottom: 10px;" class="row">
             <div class="col-lg-12">
-                <a class="btn btn-success" href="{{ route('admin.consultants.create') }}">
-                    {{ trans('global.add') }} {{ trans('cruds.consultant.title_singular') }}
+                <a class="btn btn-success" href="{{ route('admin.partners.create') }}">
+                    {{ trans('global.add') }} {{ trans('cruds.partner.title_singular') }}
                 </a>
             </div>
         </div>
     @endcan
     <div class="card">
         <div class="card-header">
-            {{ trans('cruds.consultant.title_singular') }} {{ trans('global.list') }}
+            {{ trans('cruds.partner.title_singular') }} {{ trans('global.list') }}
         </div>
 
         <div class="card-body">
             <div class="table-responsive">
-                <table class=" table table-bordered table-striped table-hover datatable datatable-Consultant">
+                <table class=" table table-bordered table-striped table-hover datatable datatable-Partner">
                     <thead>
                         <tr>
                             <th width="10">
 
                             </th>
                             <th>
-                                {{ trans('cruds.consultant.fields.id') }}
+                                {{ trans('cruds.partner.fields.id') }}
                             </th>
                             <th>
-                                {{ trans('cruds.user.fields.name') }}
+                                {{ trans('cruds.partner.fields.name') }}
                             </th>
                             <th>
-                                {{ trans('cruds.user.fields.email') }}
-                            </th>
+                                {{ trans('cruds.partner.fields.website') }}
+                            </th> 
                             <th>
-                                {{ trans('cruds.consultant.fields.specialization') }}
-                            </th>
-                            <th>
-                                {{ trans('cruds.consultant.fields.short_description') }}
-                            </th>
-                            <th>
-                                {{ trans('cruds.consultant.fields.published') }}
-                            </th>
-                            <th>
-                                {{ trans('cruds.consultant.fields.photo') }}
+                                {{ trans('cruds.partner.fields.photo') }}
                             </th>
                             <th>
                                 &nbsp;
@@ -49,59 +40,45 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($consultants as $key => $consultant)
-                            <tr data-entry-id="{{ $consultant->id }}">
+                        @foreach ($partners as $key => $partner)
+                            <tr data-entry-id="{{ $partner->id }}">
                                 <td>
 
                                 </td>
                                 <td>
-                                    {{ $consultant->id ?? '' }}
+                                    {{ $partner->id ?? '' }}
                                 </td>
                                 <td>
-                                    {{ $consultant->user->name ?? '' }}
+                                    {{ $partner->name ?? '' }}
                                 </td>
                                 <td>
-                                    {{ $consultant->user->email ?? '' }}
-                                </td>
+                                    {{ $partner->website ?? '' }}
+                                </td> 
                                 <td>
-                                    {{ $consultant->specialization ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $consultant->short_description ?? '' }}
-                                </td>
-                                <td>
-                                    <label class="c-switch c-switch-pill c-switch-success">
-                                        <input onchange="update_statuses(this,'published')" value="{{ $consultant->id }}"
-                                            type="checkbox" class="c-switch-input"
-                                            {{ $consultant->published ? 'checked' : null }}>
-                                        <span class="c-switch-slider"></span>
-                                    </label>
-                                </td>
-                                <td>
-                                    @if ($consultant->photo)
-                                        <a href="{{ $consultant->photo->getUrl() }}" target="_blank"
+                                    @if ($partner->photo)
+                                        <a href="{{ $partner->photo->getUrl() }}" target="_blank"
                                             style="display: inline-block">
-                                            <img src="{{ $consultant->photo->getUrl('thumb') }}">
+                                            <img src="{{ $partner->photo->getUrl('thumb') }}">
                                         </a>
                                     @endif
                                 </td>
                                 <td>
-                                    @can('consultant_show')
+                                    @can('partner_show')
                                         <a class="btn btn-xs btn-primary"
-                                            href="{{ route('admin.consultants.show', $consultant->id) }}">
+                                            href="{{ route('admin.partners.show', $partner->id) }}">
                                             {{ trans('global.view') }}
                                         </a>
                                     @endcan
 
-                                    @can('consultant_edit')
+                                    @can('partner_edit')
                                         <a class="btn btn-xs btn-info"
-                                            href="{{ route('admin.consultants.edit', $consultant->id) }}">
+                                            href="{{ route('admin.partners.edit', $partner->id) }}">
                                             {{ trans('global.edit') }}
                                         </a>
                                     @endcan
 
-                                    @can('consultant_delete')
-                                        <form action="{{ route('admin.consultants.destroy', $consultant->id) }}" method="POST"
+                                    @can('partner_delete')
+                                        <form action="{{ route('admin.partners.destroy', $partner->id) }}" method="POST"
                                             onsubmit="return confirm('{{ trans('global.areYouSure') }}');"
                                             style="display: inline-block;">
                                             <input type="hidden" name="_method" value="DELETE">
@@ -123,33 +100,14 @@
 @endsection
 @section('scripts')
     @parent
-    <script>
-        function update_statuses(el, type) {
-            if (el.checked) {
-                var status = 1;
-            } else {
-                var status = 0;
-            }
-            $.post('{{ route('admin.consultants.update_statuses') }}', {
-                _token: '{{ csrf_token() }}',
-                id: el.value,
-                status: status,
-                type: type
-            }, function(data) {
-                if (data == 1) {
-                    showAlert('success', 'Success', '');
-                } else {
-                    showAlert('danger', 'Something went wrong', '');
-                }
-            });
-        }
+    <script> 
         $(function() {
             let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-            @can('consultant_delete')
+            @can('partner_delete')
                 let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
                 let deleteButton = {
                     text: deleteButtonTrans,
-                    url: "{{ route('admin.consultants.massDestroy') }}",
+                    url: "{{ route('admin.partners.massDestroy') }}",
                     className: 'btn-danger',
                     action: function(e, dt, node, config) {
                         var ids = $.map(dt.rows({
@@ -192,7 +150,7 @@
                 ],
                 pageLength: 25,
             });
-            let table = $('.datatable-Consultant:not(.ajaxTable)').DataTable({
+            let table = $('.datatable-Partner:not(.ajaxTable)').DataTable({
                 buttons: dtButtons
             })
             $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e) {

@@ -97,6 +97,9 @@
                     <li><a href="javascript:void(0)" class="navs-link nav-team" data-section="ms-team-section"><i
                                 class="fa fa-users"></i><span> مستشارينا</span></a><span class="noty"><span>مستشارينا
                             </span></span></li>
+                    <li><a href="javascript:void(0)" class="navs-link nav-team" data-section="ms-partners-section"><i
+                                class="fa fa-handshake"></i><span> شركاء النجاح</span></a><span class="noty"><span>شركاء النجاح
+                            </span></span></li>
 
                     <li><a href="javascript:void(0)" class="navs-link nav-experience"
                             data-section="ms-experience-section"><i
@@ -182,6 +185,7 @@
     @include('frontend.partials.services')
     @include('frontend.partials.news')
     @include('frontend.partials.consultants')
+    @include('frontend.partials.partners')
     @include('frontend.partials.courses')
     @include('frontend.partials.quotations') 
     @include('frontend.partials.knowledge_center') 

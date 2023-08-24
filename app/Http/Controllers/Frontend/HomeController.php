@@ -16,18 +16,22 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Models\Contact;
 use App\Models\Joining;
+use App\Models\Partner;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
 
 class HomeController extends Controller
 {
+
     use MediaUploadingTrait;
+
     public function index(){
         $about_us = AboutUs::first();
         $articles = Article::where('active',1)->orderBy('created_at','desc')->simplePaginate(8);
         $books = Book::where('active',1)->orderBy('created_at','desc')->simplePaginate(8);
+        $partners = Partner::orderBy('created_at','desc')->simplePaginate(8); 
         $samples = Sample::where('active',1)->orderBy('created_at','desc')->simplePaginate(8); 
-        $consultants = Consultant::orderBy('created_at','desc')->take(12)->get(); 
+        $consultants = Consultant::where('published',1)->orderBy('priorty','asc')->orderBy('updated_at','desc')->take(12)->get(); 
         $courses = Course::orderBy('created_at','desc')->simplePaginate(3);
         $news = News::orderBy('created_at','desc')->simplePaginate(3);
         $services = Service::all();
@@ -35,6 +39,7 @@ class HomeController extends Controller
                                             'articles',
                                             'books',
                                             'samples',
+                                            'partners',
                                             'consultants',
                                             'courses',
                                             'news',
