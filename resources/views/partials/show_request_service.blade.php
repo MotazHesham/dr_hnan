@@ -174,28 +174,32 @@
                                 </td>
                             </tr>
                         @endif
-                        @foreach(json_decode($requestService->fields) as $key =>  $field)
-                            <tr>
-                                <th>
-                                    {{ $key }}
-                                </th>
-                                <td>
-                                    {{ $field }}
-                                </td>
-                            </tr>
-                        @endforeach
-                        @foreach(json_decode($requestService->form_files) as $key =>  $form_file)
-                            <tr>
-                                <th>
-                                    {{ $key }}
-                                </th>
-                                <td>
-                                    <a href="{{ asset($form_file) }}" target="_blanc">
-                                        عرض الملف
-                                    </a>
-                                </td>
-                            </tr>
-                        @endforeach
+                        @if($requestService->fields != null)
+                            @foreach(json_decode($requestService->fields) as $key =>  $field)
+                                <tr>
+                                    <th>
+                                        {{ $key }}
+                                    </th>
+                                    <td>
+                                        {{ $field }}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
+                        @if($requestService->form_files != null)
+                            @foreach(json_decode($requestService->form_files) as $key =>  $form_file)
+                                <tr>
+                                    <th>
+                                        {{ $key }}
+                                    </th>
+                                    <td>
+                                        <a href="{{ asset($form_file) }}" target="_blanc">
+                                            عرض الملف
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
                     </tbody>
                 </table>
             </div>
