@@ -66,7 +66,7 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
-    {
+    { 
         $user = User::create([
             'name'     => $data['name'],
             'email'    => $data['email'],
@@ -74,11 +74,16 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']), 
             'user_type' => 'client', 
         ]);
-
+        $form_files = array();
+        foreach($data['form_files'] as $key =>  $form_file){
+            $form_files[$key] = $form_file->store('uploads/forms');  
+        } 
         $request_service = RequestService::create([ 
             'user_id' => $user->id,
             'service_id' => $data['service_id'], 
             'status' => 'pending',
+            'fields' => json_encode($data['fields']),
+            'form_file' => json_encode($form_files)
         ]);
         return $user;
     }

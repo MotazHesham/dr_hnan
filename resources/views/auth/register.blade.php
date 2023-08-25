@@ -7,7 +7,7 @@
         <div class="card mx-4">
             <div class="card-body p-4">
 
-                <form method="POST" action="{{ route('register') }}">
+                <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                     {{ csrf_field() }}
 
                     <h1>{{ trans('panel.site_title') }}</h1>
@@ -96,7 +96,16 @@
                             </div>
                         @endif 
                     </div>
-                    <button class="btn btn-block btn-primary">
+                    <!-- Modal -->
+                    <div class="modal fade" id="AjaxModal" tabindex="-1" data-backdrop="static" data-keyboard="false" aria-labelledby="AjaxModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-xl">
+                            {{-- ajax call --}}
+                            <button class="btn btn-danger" type="submit">
+                                {{ trans('global.save') }}
+                            </button>
+                        </div>
+                    </div>
+                    <button class="btn btn-block btn-primary" type="button" onclick="openform()">
                         {{ trans('global.register') }}
                     </button>
                 </form>
@@ -107,4 +116,28 @@
     </div>
 </div>
 
+@endsection
+
+@section('scripts')
+    <script>
+        
+        function openform() { 
+            var service_id = $('#service_id').val();
+            console.log(service_id);
+            if(service_id == null  || service_id == ""){
+                alert("Please select a Service");
+                return 0;
+            }
+            $.ajax({
+                url: '{{ route("form-sections.form") }}',
+                type: 'POST',
+                data:{ service_id: service_id, _token: '{{ csrf_token() }}' },
+                success: function(data) {
+                    $('#AjaxModal .modal-dialog').html(null);
+                    $('#AjaxModal').modal('show');
+                    $('#AjaxModal .modal-dialog').html(data);
+                }, 
+            });
+        }
+    </script>
 @endsection

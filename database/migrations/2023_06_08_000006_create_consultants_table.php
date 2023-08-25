@@ -11,6 +11,8 @@ class CreateConsultantsTable extends Migration
         Schema::create('consultants', function (Blueprint $table) {
             $table->bigIncrements('id'); 
             $table->string('specialization');
+            $table->tinyInteger('published')->default(1);
+            $table->integer('priorty')->default(999);
             $table->string('short_description');
             $table->longText('description');
             $table->unsignedBigInteger('user_id');

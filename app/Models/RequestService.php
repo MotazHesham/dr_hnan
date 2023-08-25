@@ -52,6 +52,8 @@ class RequestService extends Model implements HasMedia
         'user_id',
         'service_id',
         'consultant_id',
+        'fields',
+        'form_files',
         'contract_accept',
         'status',
         'stages',

@@ -2,17 +2,16 @@
 
 namespace App\Models;
 
-use App\Traits\Auditable;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Service extends Model
+class FormSection extends Model
 {
-    use SoftDeletes, Auditable, HasFactory;
+    use SoftDeletes, HasFactory;
 
-    public $table = 'services';
+    public $table = 'form_sections';
 
     protected $dates = [
         'created_at',
@@ -20,9 +19,17 @@ class Service extends Model
         'deleted_at',
     ];
 
+    public const FORM_HAS_FILE_RADIO = [
+        'no'  => 'No',
+        'yes' => 'Yes',
+    ];
+
     protected $fillable = [
-        'name',
-        'description', 
+        'form_section_name',
+        'fields',
+        'form_has_file',
+        'file_name',
+        'service_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -32,9 +39,9 @@ class Service extends Model
     {
         return $date->format('Y-m-d H:i:s');
     }
-    
-    public function serviceFormSections()
+
+    public function service()
     {
-        return $this->hasMany(FormSection::class, 'service_id', 'id');
+        return $this->belongsTo(Service::class, 'service_id');
     }
 }

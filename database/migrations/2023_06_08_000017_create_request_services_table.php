@@ -10,6 +10,8 @@ class CreateRequestServicesTable extends Migration
     {
         Schema::create('request_services', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->longText('fields')->nullable();
+            $table->text('form_files')->nullable();
             $table->boolean('contract_accept')->default(0)->nullable();
             $table->string('status')->default('pending');
             $table->string('stages')->default('contract');

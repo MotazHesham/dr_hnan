@@ -19,6 +19,9 @@ Route::post('comments/media', 'CommentsController@storeMedia')->name('comments.s
 Route::post('comments/ckmedia', 'CommentsController@storeCKEditorImages')->name('comments.storeCKEditorImages');
 Route::post('comments/store','CommentsController@store')->name('comments.store');
 
+
+Route::post('form-sections/form', 'Admin\FormSectionController@form')->name('form-sections.form');
+
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth','staff']], function () {
     Route::get('/', 'HomeController@index')->name('home');
     // Permissions
@@ -120,6 +123,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('about-uss/media', 'AboutUsController@storeMedia')->name('about-uss.storeMedia');
     Route::post('about-uss/ckmedia', 'AboutUsController@storeCKEditorImages')->name('about-uss.storeCKEditorImages');
     Route::resource('about-uss', 'AboutUsController', ['except' => ['create', 'store', 'show', 'destroy']]);
+
+    // Form Section
+    Route::delete('form-sections/destroy', 'FormSectionController@massDestroy')->name('form-sections.massDestroy');
+    Route::post('form-sections/editAjax', 'FormSectionController@editAjax')->name('form-sections.editAjax');
+    Route::resource('form-sections', 'FormSectionController');
 
     Route::get('messenger', 'MessengerController@index')->name('messenger.index');
     Route::get('messenger/create', 'MessengerController@createTopic')->name('messenger.createTopic');
