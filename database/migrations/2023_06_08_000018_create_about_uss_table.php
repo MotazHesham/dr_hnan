@@ -10,6 +10,7 @@ class CreateAboutUssTable extends Migration
     {
         Schema::create('about_uss', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->longText('description')->nullable();
             $table->longText('vision')->nullable();
             $table->longText('message')->nullable();
             $table->string('morals')->nullable();

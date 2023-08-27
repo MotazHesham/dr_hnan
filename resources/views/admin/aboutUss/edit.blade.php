@@ -21,6 +21,16 @@
                     <span class="help-block">{{ trans('cruds.aboutUs.fields.logo_helper') }}</span>
                 </div>
                 <div class="form-group">
+                    <label for="description">{{ trans('cruds.aboutUs.fields.description') }}</label>
+                    <textarea class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" name="description" id="description">{{ old('description', $aboutUss->description) }}</textarea>
+                    @if ($errors->has('description'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('description') }}
+                        </div>
+                    @endif
+                    <span class="help-block">{{ trans('cruds.aboutUs.fields.description_helper') }}</span>
+                </div>
+                <div class="form-group">
                     <label for="vision">{{ trans('cruds.aboutUs.fields.vision') }}</label>
                     <textarea class="form-control {{ $errors->has('vision') ? 'is-invalid' : '' }}" name="vision" id="vision">{{ old('vision', $aboutUss->vision) }}</textarea>
                     @if ($errors->has('vision'))

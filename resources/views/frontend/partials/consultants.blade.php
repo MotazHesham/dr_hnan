@@ -30,7 +30,7 @@
                                     {{ $consultant->specialization ?? '' }}
                                 </b>
                                 <p>
-                                    <?php echo nl2br($consultant->short_description ?? ''); ?>
+                                    <?php echo nl2br($consultant->description ?? ''); ?>
                                 </p>
 
                             </div>

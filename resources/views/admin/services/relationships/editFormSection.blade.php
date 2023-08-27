@@ -67,7 +67,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <button class="btn btn-danger" type="button">
+                <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}
                 </button>
             </div>

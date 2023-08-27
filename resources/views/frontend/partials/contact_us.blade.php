@@ -12,20 +12,7 @@
             <div class="col-md-8">
                 <div class="section-title">
                     <h2>تواصل <span>معنا </span></h2>
-                </div>
-
-
-
-                <ul class="ms-social">
-                    <li><a href="{{ $about_us->instagram }}" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                    </li>
-                    <li><a href="{{ $about_us->twitter }}" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                    </li>
-                    <li><a href="{{ $about_us->linkedin }}" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                    </li>
-                    <li><a href="{{ $about_us->facebook }}" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                    </li>
-                </ul>
+                </div> 
 
                 <form action="{{ route('frontend.contact_us') }}" method="POST">
                     @csrf
@@ -45,26 +32,23 @@
                 </form>
 
                 <div class="row p-t-80 ms-contact-detail m-tb-minus-12">
-                    <div class="col-xs-12 col-sm-6 col-lg-4 p-tp-12">
+                    <div class="col-xs-12 col-sm-6 col-lg-6 p-tp-12">
                         <div class="ms-box">
                             <div class="detail">
                                 <div class="icon"><i class="fa fa-envelope" aria-hidden="true"></i></div>
                                 <div class="info">
-                                    <h3 class="title">البريد والموقع الالكتروني</h3>
+                                    <h3 class="title">البريد الالكتروني</h3>
                                     <p>
                                         <i class="fa fa-envelope" aria-hidden="true"></i> &nbsp
                                         {{ $about_us->email }}
-                                    </p>
-                                    <p>
-                                        <i class="fa fa-globe" aria-hidden="true"></i> &nbsp {{ $about_us->website}}
-                                    </p>
+                                    </p> 
                                 </div>
                             </div>
                             <div class="space"></div>
                         </div>
                     </div>
 
-                    <div class="col-xs-12 col-sm-6 col-lg-4 p-tp-12">
+                    <div class="col-xs-12 col-sm-6 col-lg-6 p-tp-12">
                         <div class="ms-box">
                             <div class="detail">
                                 <div class="icon"><i class="fa fa-mobile" aria-hidden="true"></i></div>
@@ -80,26 +64,7 @@
                             </div>
                             <div class="space"></div>
                         </div>
-                    </div>
-
-                    <div class="col-xs-12 col-sm-6 col-lg-4 p-tp-12 m-auto">
-                        <div class="ms-box">
-                            <div class="detail">
-                                <div class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
-                                <div class="info">
-                                    <h3 class="title">العنوان</h3>
-                                    <p>
-                                        <i class="fa fa-map-marker" aria-hidden="true"></i> 
-                                        
-                                        <?php echo nl2br($about_us->address ?? ''); ?>
-                                        
-                                    </p> 
-                                </div>
-                            </div>
-                            <div class="space"></div>
-                        </div>
-                    </div>
-                    <!-- /Boxes de Acoes -->
+                    </div> 
                 </div>
             </div>
         </div>

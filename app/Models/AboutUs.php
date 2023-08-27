@@ -28,6 +28,7 @@ class AboutUs extends Model implements HasMedia
     ];
 
     protected $fillable = [
+        'description',
         'vision',
         'message',
         'morals',

@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="row">
-            <h4 class="text-center">برامج متخصصة لتطوير جودة الحياة الوظيفية</h4>
+            <h4 class="text-center" style="font-size: 35px;">برامج متخصصة لتطوير جودة الحياة الوظيفية</h4>
         </div>
         <br /><br />
 

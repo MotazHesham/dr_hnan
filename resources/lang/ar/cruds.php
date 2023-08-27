@@ -443,6 +443,8 @@ return [
             'id_helper'             => ' ',
             'logo'                  => 'logo',
             'logo_helper'           => ' ',
+            'description'                => 'من نحن',
+            'description_helper'         => ' ',
             'vision'                => 'الرؤية',
             'vision_helper'         => ' ',
             'message'               => 'الرسالة',

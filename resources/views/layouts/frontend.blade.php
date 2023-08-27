@@ -82,8 +82,8 @@
     <script src="{{ asset('frontend/assets/js/plugins/fontawesome.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/plugins/tilt.jquery.js') }}"></script>
     <!-- theme particles script ------>
-    {{-- <script src="{{ asset('frontend/assets/js/plugins/particles.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('frontend/assets/js/plugins/app.js') }}"></script> --}}
+   <script src="{{ asset('frontend/assets/js/plugins/particles.min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/plugins/app.js') }}"></script>
     <!-- Main Js -->
     <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
 
