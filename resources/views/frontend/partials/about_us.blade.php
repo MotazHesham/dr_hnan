@@ -16,7 +16,11 @@
                     <div class="section-title">
                         <h2>من<span> نحن </span></h2>
                     </div> 
-                    </p>{!! $about_us->description !!} </p>
+                    <h5 class="just ">
+                        <strong>
+                            {!! $about_us->description !!} 
+                        </strong>
+                    </h5>
                     <div class="row" style="padding: 0 ; margin: 0;">
                         <div class="col-md-6">
                             <div class="about-content">

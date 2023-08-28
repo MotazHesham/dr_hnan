@@ -26,12 +26,12 @@
                             </figure>
                             <div class="detail">
                                 <h3><a target="_blanc" href="{{ $consultant->cv ? $consultant->cv->getUrl() : '#' }}"> {{ $consultant->user ? $consultant->user->name : '' }}</a></h3>
-                                <b>
+                                <p class="just">
                                     {{ $consultant->specialization ?? '' }}
-                                </b>
-                                <p>
+                                </p> 
+                                <h6 class="just" > 
                                     <?php echo nl2br($consultant->description ?? ''); ?>
-                                </p>
+                                </h6>
 
                             </div>
                         </div>
