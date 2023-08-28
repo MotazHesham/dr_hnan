@@ -1,8 +1,15 @@
+@php 
+    $about_us = \App\Models\AboutUs::first();
+@endphp
 <div id="sidebar" class="c-sidebar c-sidebar-fixed c-sidebar-lg-show">
 
     <div class="c-sidebar-brand d-md-down-none">
         <a class="c-sidebar-brand-full h4" href="#">
-            {{ trans('panel.site_title') }}
+            @if($about_us->logo)
+                <img src="{{ $about_us->logo->getUrl() }}" alt="">
+            @else 
+                {{ trans('panel.site_title') }}
+            @endif
         </a>
     </div>
 

@@ -237,7 +237,7 @@ p {
     font-size: 16px;
     line-height: 28px;
 }
-
+.just { text-align:justify; direction:rtl;}
 ul {
     margin: 0;
     padding: 0;
