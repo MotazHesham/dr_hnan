@@ -1,0 +1,1 @@
+<a href="hdac.sa/admin/quotations">{{ $name }}</a> تم أرسال طلب أستشارة مجانية جديدة من 

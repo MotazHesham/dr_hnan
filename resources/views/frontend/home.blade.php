@@ -102,25 +102,25 @@
                             data-section="ms-experience-section"><i
                                 class="fa fa-briefcase"></i><span>خدماتنا</span></a><span
                             class="noty"><span>خدماتنا</span></span></li>
-                    <li><a href="javascript:void(0)" class="navs-link nav-training" data-section="ms-training-section"><i
+                    {{-- <li><a href="javascript:void(0)" class="navs-link nav-training" data-section="ms-training-section"><i
                                 class="fa fa-leanpub"></i><span>تدريب</span></a><span
-                            class="noty"><span>تدريب</span></span></li>
+                            class="noty"><span>تدريب</span></span></li> --}}
 
 
-                    <li><a href="javascript:void(0)" class="navs-link nav-news" data-section="ms-news-section"><i
+                    {{-- <li><a href="javascript:void(0)" class="navs-link nav-news" data-section="ms-news-section"><i
                                 class="fas fa-newspaper"></i><span>الاخبار</span></a><span
-                            class="noty"><span>الاخبار</span></span></li>
+                            class="noty"><span>الاخبار</span></span></li> --}}
                     <li><a href="javascript:void(0)" class="navs-link nav-join" data-section="ms-join-section"><i
                                 class="fa fa-handshake-o"></i><span>انضم الينا</span></a><span class="noty"><span>انضم
                                 الينا</span></span></li>
 
-                    <li><a href="javascript:void(0)" class="navs-link nav-know" data-section="ms-knowledge-section"><i
+                    {{-- <li><a href="javascript:void(0)" class="navs-link nav-know" data-section="ms-knowledge-section"><i
                                 class="fa fa-book"></i><span>مركز المعرفة </span></a><span class="noty"><span> مركز
                                 المعرفة</span></span></li>
 
                     <li><a href="javascript:void(0)" class="navs-link nav-team" data-section="ms-partners-section"><i
                                 class="fa fa-handshake"></i><span> شركاء النجاح</span></a><span class="noty"><span>شركاء النجاح
-                            </span></span></li>
+                            </span></span></li> --}}
                     <li><a href="javascript:void(0)" class="navs-link nav-contact" data-section="ms-contact-section"><i
                                 class="fa fa-envelope"></i><span>تواصل معنا</span></a><span class="noty"><span>تواصل
                                 معنا</span></span></li>

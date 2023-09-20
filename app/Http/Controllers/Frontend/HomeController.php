@@ -14,9 +14,13 @@ use App\Models\Sample;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
+use App\Mail\NewContactusMail;
+use App\Mail\NewJoiningMail;
+use App\Mail\NewQuotationMail;
 use App\Models\Contact;
 use App\Models\Joining;
 use App\Models\Partner;
+use Illuminate\Support\Facades\Mail;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -47,12 +51,16 @@ class HomeController extends Controller
     }
 
     public function quotations(Request $request){ 
+        $about_us = AboutUs::first();
         $quotation = Quotation::create($request->all());
         alert('تم بنجاح','تم أرسال طلبك إلي الأدارة وسوف يتم أرسال أيميل إلي '. $request->email .' بالعرض قريبا','success')->autoClose(false);
+        Mail::to($about_us->email)->send(new NewQuotationMail($quotation->name));
         return redirect()->route('frontend.home');
     }
 
     public function joining(Request $request){
+
+        $about_us = AboutUs::first();
 
         $joining = Joining::create($request->all());
 
@@ -66,14 +74,17 @@ class HomeController extends Controller
 
         alert('تم بنجاح','تم أرسال طلبك إلي الأدارة وسوف يتم أرسال أيميل إلي '. $request->email .' بالرد قريبا','success')->autoClose(false);
 
+        Mail::to($about_us->email)->send(new NewJoiningMail($joining->name));
         return redirect()->route('frontend.home');
     }
     
     public function contact_us(Request $request){
-        Contact::create($request->all()); 
+        $about_us = AboutUs::first();
+        $contact = Contact::create($request->all()); 
 
         alert('تم بنجاح','تم أرسال طلبك إلي الأدارة وسوف يتم أرسال أيميل إلي '. $request->email .' بالرد قريبا','success')->autoClose(false);
 
+        Mail::to($about_us->email)->send(new NewContactusMail($contact->name));
         return redirect()->route('frontend.home');
     
     }

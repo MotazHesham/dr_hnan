@@ -1,0 +1,1 @@
+<a href="hdac.sa/admin/contacts">{{ $name }}</a> تم أرسال طلب تواصل جديد من 

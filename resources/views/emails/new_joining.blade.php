@@ -1,0 +1,1 @@
+<a href="hdac.sa/admin/joinings">{{ $name }}</a> تم أرسال طلب أنضمام جديد من 
